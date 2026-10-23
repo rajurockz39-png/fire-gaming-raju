@@ -1,0 +1,719 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIREGAMINGRAJU — Free Fire ID Buy &amp; Sell | Vizag</title>
+<meta name="description" content="Buy and sell premium Free Fire IDs with FIREGAMINGRAJU. Hand to hand deals in Vizag, 100% safe and secure. WhatsApp 76248 90805.">
+<meta property="og:title" content="FIREGAMINGRAJU — Free Fire ID Buy &amp; Sell">
+<meta property="og:description" content="Premium Free Fire IDs. Hand to hand deals. 100% safe &amp; secure. Vizag.">
+<meta property="og:image" content="assets/banner.webp">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#ff2230;--red-2:#c4001a;--orange:#ff6a00;
+  --bg:#08080a;--bg2:#0d0d10;--card:#131317;--line:rgba(255,255,255,.08);
+  --muted:#9a9aa5;--grad:linear-gradient(135deg,#ff2230,#ff6a00);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+.wrap{width:min(1180px,90%);margin:0 auto}
+.display{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.5px;text-transform:uppercase;line-height:.96}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:80;display:flex;align-items:center;justify-content:space-between;
+  gap:18px;padding:14px 5%;background:rgba(8,8,10,.75);backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid var(--line);transition:.3s}
+nav.scrolled{background:rgba(8,8,10,.95);padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand .mark{width:32px;height:32px;filter:drop-shadow(0 0 10px rgba(255,34,48,.65))}
+.brand b{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:1.4px;text-transform:uppercase;white-space:nowrap}
+.brand b span{color:var(--red)}
+.nav-links{display:flex;gap:28px;font-size:.85rem;font-weight:600;color:#cfcfd6}
+.nav-links a{position:relative;padding:4px 0}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--grad);transition:.25s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--grad);padding:10px 19px;border-radius:8px;
+  font-weight:800;font-size:.8rem;letter-spacing:.4px;box-shadow:0 6px 24px rgba(255,34,48,.35);transition:.2s;flex:none}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,34,48,.5)}
+.nav-cta svg{width:16px;height:16px;fill:currentColor}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.06fr .94fr;align-items:center;
+  gap:48px;padding:132px 5% 84px;overflow:hidden}
+.hero>.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.3}
+.hero-bg::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(900px 620px at 76% 26%,rgba(255,34,48,.24),transparent 66%),
+             radial-gradient(700px 520px at -5% 92%,rgba(255,106,0,.15),transparent 66%),
+             linear-gradient(90deg,var(--bg) 32%,rgba(8,8,10,.6) 66%,rgba(8,8,10,.92) 100%)}
+.hero>*:not(.hero-bg){position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.7rem;font-weight:800;letter-spacing:2.2px;
+  text-transform:uppercase;color:#ffb199;border:1px solid rgba(255,34,48,.35);background:rgba(255,34,48,.08);
+  padding:8px 15px;border-radius:999px;margin-bottom:22px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.hero h1{font-size:clamp(2.7rem,6.2vw,5.2rem)}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line>span:first-child{display:inline-block}
+.hero h1 .fire{background:linear-gradient(100deg,#ff2230,#ff6a00 34%,#ffd166 50%,#ff6a00 66%,#ff2230);
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 26px rgba(255,34,48,.45));animation:lavaflow 7s linear infinite}
+@keyframes lavaflow{to{background-position:-220% 0}}
+.fire-line{position:relative}
+/* light sweep across the headline */
+.hero h1 .sheen{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.82) 50%,transparent 62%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:sheen 5.5s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes sheen{0%,55%{background-position:190% 0}100%{background-position:-90% 0}}
+/* headline rise-in */
+.hero h1 .line>span:first-child{animation:riseIn .9s cubic-bezier(.2,.85,.25,1) both}
+.hero h1 .line:nth-child(2)>span:first-child{animation-delay:.14s}
+@keyframes riseIn{from{transform:translateY(104%) rotate(2.5deg);opacity:0}to{transform:none;opacity:1}}
+/* embers drifting up */
+.embers{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.embers i{position:absolute;bottom:-14px;width:3px;height:3px;border-radius:50%;
+  background:radial-gradient(circle,#ffd166,#ff6a00 45%,rgba(255,34,48,0) 72%);
+  animation:emberRise linear infinite;will-change:transform,opacity}
+@keyframes emberRise{
+  0%{transform:translateY(0) translateX(0) scale(1);opacity:0}
+  8%{opacity:.95}
+  70%{opacity:.55}
+  100%{transform:translateY(-104vh) translateX(var(--drift,20px)) scale(.25);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero h1 .fire,.hero h1 .sheen,.embers i,.poster,.float-wa,.eyebrow .dot{animation:none!important}
+  .hero h1 .line>span:first-child{animation:none;opacity:1}
+}
+.hero .lead{margin:22px 0 30px;max-width:520px;color:#b9b9c4;font-size:1rem;line-height:1.7}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 25px;border-radius:10px;font-weight:800;font-size:.9rem;
+  transition:.2s;border:none;cursor:pointer;text-align:center;justify-content:center}
+.btn svg{width:18px;height:18px;fill:currentColor;flex:none}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 34px rgba(255,34,48,.38)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 42px rgba(255,34,48,.55)}
+.btn-ghost{background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.16)}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,34,48,.5);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+.hero-stats .s b{display:block;font-family:'Anton',sans-serif;font-size:1.65rem;letter-spacing:.5px}
+.hero-stats .s b em{font-style:normal;color:var(--red)}
+.hero-stats .s span{font-size:.68rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-visual::before{content:'';position:absolute;width:76%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,34,48,.45),transparent 68%);filter:blur(52px)}
+.poster{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,60,72,.35);
+  box-shadow:0 40px 90px rgba(0,0,0,.75),0 0 60px rgba(255,34,48,.22);animation:float 7s ease-in-out infinite}
+.poster img{width:100%;max-width:420px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-15px) rotate(.6deg)}}
+
+/* ---------- TICKER ---------- */
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:13px 0;white-space:nowrap;
+  background:linear-gradient(90deg,rgba(255,34,48,.11),rgba(255,106,0,.05),rgba(255,34,48,.11))}
+.ticker-track{display:inline-flex;animation:scroll 28s linear infinite;will-change:transform}
+.ticker-track span{font-family:'Anton',sans-serif;font-size:.86rem;letter-spacing:3px;color:#ffb3ad;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:46px;padding-right:46px}
+.ticker-track span::after{content:'◆';color:var(--red);font-size:.55rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:92px 0;position:relative}
+.sec-head{text-align:center;margin-bottom:50px}
+.sec-head .kicker{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--red);margin-bottom:13px}
+.sec-head h2{font-size:clamp(1.9rem,4vw,3rem)}
+.sec-head p{margin:16px auto 0;max-width:600px;color:var(--muted);line-height:1.7;font-size:.94rem}
+
+/* ---------- SOCIAL ---------- */
+.community{background:var(--bg2);border-block:1px solid var(--line)}
+.social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.social{position:relative;display:flex;flex-direction:column;gap:15px;padding:28px 24px;border-radius:15px;
+  background:var(--card);border:1px solid var(--line);overflow:hidden;transition:.28s}
+.social::before{content:'';position:absolute;inset:auto 0 0 0;height:3px;background:var(--brand,var(--grad));
+  transform:scaleX(0);transform-origin:left;transition:.35s}
+.social:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.18);box-shadow:0 24px 50px rgba(0,0,0,.55)}
+.social:hover::before{transform:scaleX(1)}
+.social .ico{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;background:var(--brand,#333)}
+.social .ico svg{width:25px;height:25px;fill:#fff}
+.social h3{font-size:1.02rem;font-weight:800}
+.social p{font-size:.84rem;color:var(--muted);line-height:1.6;flex:1}
+.social .go{display:inline-flex;align-items:center;gap:7px;font-size:.75rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+.social .go i{font-style:normal;transition:.25s}
+.social:hover .go i{transform:translateX(5px)}
+.s-yt{--brand:linear-gradient(135deg,#ff0000,#b00000)}
+.s-wa{--brand:linear-gradient(135deg,#25d366,#128c4b)}
+.s-wc{--brand:linear-gradient(135deg,#25d366,#0b5c33)}
+.s-ig{--brand:linear-gradient(135deg,#f9ce34,#ee2a7b 45%,#6228d7)}
+
+/* ---------- POSTERS ---------- */
+.poster-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.poster-grid.single{grid-template-columns:minmax(0,560px);justify-content:center}
+.poster-grid.single .poster-card img{aspect-ratio:1/1}
+.poster-card{position:relative;border-radius:17px;overflow:hidden;border:1px solid var(--line);transition:.3s;display:block}
+.poster-card:hover{transform:translateY(-6px);border-color:rgba(255,34,48,.45);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.poster-card img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.poster-card .cap{position:absolute;inset:auto 0 0 0;padding:20px 22px;display:flex;align-items:end;
+  justify-content:space-between;gap:12px;
+  background:linear-gradient(to top,rgba(8,8,10,.97),rgba(8,8,10,.55) 58%,transparent)}
+.poster-card .cap h3{font-family:'Anton',sans-serif;font-size:1.05rem;letter-spacing:1px}
+.poster-card .cap span{display:block;font-size:.66rem;color:#ffb3ad;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+
+/* ---------- PRODUCTS ---------- */
+.ids{background:var(--bg2);border-block:1px solid var(--line)}
+.id-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.id-card{position:relative;display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:#0a0a0d;transition:.28s;isolation:isolate}
+.id-card:hover{transform:translateY(-5px);border-color:rgba(255,34,48,.5);box-shadow:0 22px 46px rgba(0,0,0,.6)}
+.id-card .shot{position:relative;aspect-ratio:1/1;overflow:hidden;
+  background:radial-gradient(circle at 50% 38%,rgba(255,34,48,.18),#0a0a0d 74%)}
+.id-card .shot img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.id-card:hover .shot img{transform:scale(1.055)}
+.id-card .noimg{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;color:#4a4a55}
+.id-card .noimg .flame{width:44px;height:44px;opacity:.5}
+.id-card .noimg em{font-style:normal;font-size:.6rem;letter-spacing:2.6px;text-transform:uppercase;font-weight:800;
+  color:#4f4f5c}
+.id-card .pricebar{position:absolute;inset:auto 0 0 0;z-index:2;display:flex;align-items:center;justify-content:center;
+  padding:14px 12px;background:linear-gradient(to top,rgba(8,8,10,.97) 40%,rgba(8,8,10,.72) 75%,transparent)}
+.id-card .pricebar .amt{font-family:'Anton',sans-serif;font-size:1.35rem;letter-spacing:.8px;
+  text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.id-card.out .shot img{filter:grayscale(1) brightness(.42)}
+.id-card.out .pricebar .amt{color:#8d8d97}
+.id-card .flag{position:absolute;top:12px;left:12px;z-index:3;font-size:.56rem;font-weight:900;letter-spacing:1.4px;
+  padding:6px 10px;border-radius:5px;text-transform:uppercase}
+.id-card .flag.live{background:var(--grad);color:#fff;box-shadow:0 4px 14px rgba(255,34,48,.4)}
+.id-card .flag.out{background:rgba(8,8,10,.85);color:#ff8a92;border:1px solid rgba(255,34,48,.55)}
+.id-card .buyhint{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(37,211,102,.92);box-shadow:0 4px 16px rgba(37,211,102,.45);
+  transition:.25s;opacity:0;transform:scale(.7)}
+.id-card .buyhint svg{width:18px;height:18px;fill:#fff}
+.id-card:hover .buyhint{opacity:1;transform:scale(1)}
+.id-card.out .buyhint{background:rgba(255,255,255,.1);box-shadow:none;opacity:1;transform:scale(1)}
+.id-card.out .buyhint svg{fill:#77777f}
+.id-card.out{cursor:not-allowed}
+
+/* stock counter */
+.stock-strip{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-22px 0 34px}
+.stock-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 18px;border-radius:999px;
+  background:rgba(46,229,107,.09);border:1px solid rgba(46,229,107,.32);font-size:.8rem;font-weight:700;letter-spacing:.3px}
+.stock-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok,#2ee56b);box-shadow:0 0 10px #2ee56b;animation:pulse 2s infinite}
+.stock-pill b{color:#2ee56b}
+.stock-pill.gone{background:rgba(255,34,48,.08);border-color:rgba(255,34,48,.3);color:#ffb3ad}
+.stock-pill.gone b{color:#ff5560}
+.empty-note{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted);font-size:.9rem;
+  border:1px dashed var(--line);border-radius:15px}
+.more-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:38px}
+.more-btn{padding:13px 34px}
+.more-count{font-size:.76rem;color:var(--muted);letter-spacing:.6px}
+
+/* ---------- TRUST ---------- */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.trust{padding:26px 20px;border-radius:15px;background:var(--card);border:1px solid var(--line);text-align:center;transition:.25s}
+.trust:hover{border-color:rgba(255,34,48,.35);transform:translateY(-4px)}
+.trust .glyph{font-size:1.6rem;margin-bottom:12px;display:block}
+.trust h4{font-size:.92rem;font-weight:800;margin-bottom:7px}
+.trust p{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ---------- HOW ---------- */
+.how{background:var(--bg2);border-block:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:step}
+.step{position:relative;padding:34px 26px 30px;border-radius:15px;background:var(--card);
+  border:1px solid var(--line);overflow:hidden}
+.step::before{counter-increment:step;content:'0' counter(step);position:absolute;top:8px;right:16px;
+  font-family:'Anton',sans-serif;font-size:3.4rem;line-height:1;color:rgba(255,255,255,.045)}
+.step h3{font-size:.98rem;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:10px}
+.step h3 .n{width:25px;height:25px;border-radius:6px;background:var(--grad);display:grid;place-items:center;
+  font-size:.7rem;font-weight:900;flex:none}
+.step p{font-size:.84rem;color:var(--muted);line-height:1.65}
+
+/* ---------- CONTACT ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.contact-main{position:relative;border-radius:18px;padding:36px;overflow:hidden;
+  background:linear-gradient(150deg,#1a0a0d,#131317 58%);border:1px solid rgba(255,34,48,.26)}
+.contact-main::before{content:'';position:absolute;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,34,48,.3),transparent 70%);top:-130px;right:-110px;filter:blur(28px)}
+.contact-main h3{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:1px;margin-bottom:7px;position:relative}
+.contact-main .sub{color:var(--muted);font-size:.87rem;margin-bottom:24px;position:relative}
+.phone{display:flex;align-items:center;gap:15px;padding:17px 19px;border-radius:13px;background:rgba(37,211,102,.08);
+  border:1px solid rgba(37,211,102,.3);margin-bottom:13px;position:relative;transition:.22s}
+.phone:hover{background:rgba(37,211,102,.15);transform:translateX(4px)}
+.phone .ico{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#25d366,#128c4b);
+  display:grid;place-items:center;flex:none}
+.phone .ico svg{width:22px;height:22px;fill:#fff}
+.phone small{display:block;font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:#7fe0a5;
+  font-weight:800;margin-bottom:2px}
+.phone b{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:2px}
+.phone .arrow{margin-left:auto;color:#7fe0a5;font-size:1.15rem}
+.link-row{display:flex;flex-direction:column;gap:9px;position:relative;margin-top:22px}
+.link-row a{display:flex;align-items:center;gap:12px;padding:12px 15px;border-radius:10px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:.85rem;font-weight:600;transition:.2s}
+.link-row a:hover{background:rgba(255,34,48,.1);border-color:rgba(255,34,48,.4);transform:translateX(4px)}
+.link-row a svg{width:16px;height:16px;fill:var(--red);flex:none}
+.link-row a span{color:var(--muted);font-weight:500;margin-left:auto;font-size:.76rem}
+.contact-side{display:flex;flex-direction:column;gap:16px}
+.note{padding:24px;border-radius:15px;background:rgba(255,34,48,.07);border:1px solid rgba(255,34,48,.26)}
+.note h4{font-size:.92rem;margin-bottom:9px}
+.note p{font-size:.83rem;color:#d9c2c4;line-height:1.7}
+.note strong{color:#fff}
+.deal-box{flex:1;padding:26px;border-radius:15px;background:var(--card);border:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:center}
+.deal-box .row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:11px 0;
+  border-bottom:1px dashed rgba(255,255,255,.08);font-size:.84rem}
+.deal-box .row:last-child{border-bottom:none}
+.deal-box .row span{color:var(--muted);flex:none}
+.deal-box .row b{text-align:right}
+.deal-box .ok{color:#2ee56b}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);padding:52px 0 32px;background:var(--bg2)}
+.foot-top{display:flex;justify-content:space-between;align-items:start;gap:40px;flex-wrap:wrap;margin-bottom:34px}
+.foot-brand{max-width:300px}
+.foot-brand .brand{margin-bottom:13px}
+.foot-brand p{font-size:.83rem;color:var(--muted);line-height:1.7}
+.foot-links{display:flex;gap:54px;flex-wrap:wrap}
+.foot-col h5{font-size:.66rem;letter-spacing:2.4px;text-transform:uppercase;color:#6e6e7a;margin-bottom:13px;font-weight:800}
+.foot-col a{display:block;font-size:.84rem;color:#cfcfd6;padding:5px 0;transition:.2s}
+.foot-col a:hover{color:var(--red)}
+.foot-bot{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;font-size:.74rem;color:#6e6e7a}
+
+/* ---------- FLOAT WA ---------- */
+.float-wa{position:fixed;right:20px;bottom:20px;z-index:90;width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#128c4b);display:grid;place-items:center;
+  box-shadow:0 12px 34px rgba(37,211,102,.45);transition:.25s;animation:float 4s ease-in-out infinite}
+.float-wa:hover{transform:scale(1.08)}
+.float-wa svg{width:28px;height:28px;fill:#fff}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s cubic-bezier(.2,.7,.3,1),transform .65s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1080px){
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:118px;gap:42px}
+  .hero-bg::after{background:radial-gradient(700px 520px at 50% 8%,rgba(255,34,48,.25),transparent 66%),rgba(8,8,10,.9)}
+  .hero .lead{margin-inline:auto}
+  .hero-actions,.hero-stats{justify-content:center}
+  .id-grid{grid-template-columns:repeat(3,1fr)}
+  .social-grid,.trust-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+}
+@media(max-width:760px){
+  section{padding:68px 0}
+  .social-grid,.trust-grid,.steps,.poster-grid,.contact-grid{grid-template-columns:1fr}
+  .id-grid{grid-template-columns:repeat(2,1fr);gap:11px}
+  .id-card .pricebar{padding:11px 8px}
+  .id-card .pricebar .amt{font-size:1.05rem}
+  .id-card .flag{font-size:.5rem;padding:5px 8px;top:9px;left:9px}
+  .id-card .buyhint{width:28px;height:28px;top:9px;right:9px;opacity:1;transform:scale(1)}
+  .id-card .buyhint svg{width:15px;height:15px}
+  .nav-cta span{display:none}
+  .nav-cta{padding:11px 13px}
+  .hero-stats{gap:22px}
+  .foot-links{gap:30px}
+  .contact-main{padding:28px 22px}
+  .float-wa{width:50px;height:50px;right:15px;bottom:15px}
+  .poster-card img{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="brand" href="#top">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+      <defs><linearGradient id="fg" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#ff6a00"/><stop offset="1" stop-color="#ff2230"/></linearGradient></defs>
+      <path fill="url(#fg)" d="M16 1c1.6 5.2-1.2 7.6-3.4 10.2C10.2 14 8 16.5 8 20.2 8 25.6 11.6 30 16.4 30c4.9 0 8.6-3.9 8.6-8.9 0-4.2-1.8-7-3.6-9.4-1.2-1.6-2.5-3.4-2.5-5.4-1 .9-1.9 2.2-2.4 4C15.1 6.8 16 3.5 16 1z"/>
+      <path fill="#fff" opacity=".92" d="M16.3 17.4c.8 2.6-.6 3.8-1.7 5.1-.8.9-1.4 1.9-1.4 3.2 0 2.1 1.4 3.8 3.2 3.8 1.9 0 3.4-1.6 3.4-3.7 0-1.7-.7-2.8-1.4-3.7-.6-.8-1.2-1.7-1.2-2.7-.4.4-.7 1-.9 1.8-.2-.9 0-2.5 0-3.8z"/>
+    </svg>
+    <b>FIRE<span>GAMING</span>RAJU</b>
+  </a>
+  <div class="nav-links">
+    <a href="#ids">IDs For Sale</a>
+    <a href="#community">Community</a>
+    <a href="#how">How It Works</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="https://wa.me/917624890805" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg>
+    <span>WhatsApp</span>
+  </a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"><img src="assets/banner.webp" alt="" fetchpriority="high"></div>
+  <div class="embers" id="embers" aria-hidden="true"></div>
+  <div>
+    <div class="eyebrow"><span class="dot"></span> Vizag's Trusted Free Fire Dealer</div>
+    <h1 class="display">
+      <span class="line">Free Fire</span>
+      <span class="line fire-line"><span class="fire">ID Buy &amp; Sell</span><span class="sheen" aria-hidden="true"></span></span>
+    </h1>
+    <p class="lead">Hand to hand deals. Verified IDs. 100% safe &amp; secure. Buying your dream account or selling your own — FIREGAMINGRAJU gets it done right.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://wa.me/917624890805?text=Hi%20FIREGAMINGRAJU%2C%20I%20want%20to%20buy%20a%20Free%20Fire%20ID" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg>
+        Buy on WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/firegamingraju" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.93 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.69.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0m0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8m6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88"/></svg>
+        Watch on Instagram
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="s"><b>100<em>%</em></b><span>Safe Deals</span></div>
+      <div class="s"><b>Hand<em>2</em>Hand</b><span>Vizag Deals</span></div>
+      <div class="s"><b>24<em>/</em>7</b><span>WhatsApp Support</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="poster"><img src="assets/id-sell-gold.webp" alt="FIREGAMINGRAJU Free Fire ID Sell poster"></div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<section class="community" id="community">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Join The Squad</span>
+      <h2 class="display">Connect With <span style="color:var(--red)">Fire Gaming</span></h2>
+      <p>New IDs, price drops and giveaway alerts drop first on these channels.</p>
+    </div>
+    <div class="social-grid">
+      <a class="social s-yt reveal" href="https://www.youtube.com/@firegamingraju" target="_blank" rel="noopener">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></div>
+        <h3>YouTube Channel</h3>
+        <p>Gameplay, ID showcases and deal proof videos.</p>
+        <span class="go">Subscribe <i>→</i></span>
+      </a>
+      <a class="social s-wa reveal" href="https://chat.whatsapp.com/KBCUM0clrHA3J5Sb8rFIuA" target="_blank" rel="noopener">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg></div>
+        <h3>WhatsApp Group</h3>
+        <p>Talk to buyers and sellers. Live IDs posted daily.</p>
+        <span class="go">Join Group <i>→</i></span>
+      </a>
+      <a class="social s-wc reveal" href="https://whatsapp.com/channel/0029VaCsAF69RZAglLQBB22g" target="_blank" rel="noopener">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg></div>
+        <h3>WhatsApp Channel</h3>
+        <p>Official broadcasts only — price drops and new stock.</p>
+        <span class="go">Follow Channel <i>→</i></span>
+      </a>
+      <a class="social s-ig reveal" href="https://www.instagram.com/firegamingraju" target="_blank" rel="noopener">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.93 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.69.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0m0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8m6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88"/></svg></div>
+        <h3>Instagram</h3>
+        <p>Reels, buyer proof and story highlights.</p>
+        <span class="go">Follow <i>→</i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Buy &amp; Sell</span>
+      <h2 class="display">Deals Poster</h2>
+      <p>Share this with anyone looking to buy or sell a Free Fire ID.</p>
+    </div>
+    <div class="poster-grid single">
+      <a class="poster-card reveal" href="https://wa.me/917624890805?text=Hi%20FIREGAMINGRAJU%2C%20I%20saw%20your%20ID%20sell%20poster" target="_blank" rel="noopener">
+        <img src="assets/id-sell-gold.webp" alt="Free Fire ID Sell gold poster" loading="lazy">
+        <div class="cap"><div><span>Gold Edition</span><h3>Free Fire ID Sell</h3></div>
+          <span class="btn btn-primary" style="padding:10px 16px;font-size:.76rem">Buy Now</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="ids" id="ids">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Available Stock</span>
+      <h2 class="display">IDs For Sale</h2>
+      <p>Every account is verified before it goes up. Prices negotiable — tap any ID to message us directly on WhatsApp.</p>
+    </div>
+    <div class="stock-strip" id="stockStrip"></div>
+    <div class="id-grid" id="productGrid">
+      <div class="empty-note">Loading stock…</div>
+    </div>
+    <div class="more-wrap" id="moreWrap" hidden>
+      <button class="btn btn-ghost more-btn" id="moreBtn">Show More IDs</button>
+      <span class="more-count" id="moreCount"></span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Why Us</span>
+      <h2 class="display">Why Buy From Us</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust reveal"><span class="glyph">🛡️</span><h4>100% Safe Deals</h4><p>Full account access handed over with email and recovery details. No post-sale recovery risk.</p></div>
+      <div class="trust reveal"><span class="glyph">🤝</span><h4>Hand To Hand</h4><p>Prefer face to face? Meet up in Vizag and complete the deal in person.</p></div>
+      <div class="trust reveal"><span class="glyph">⚡</span><h4>Fast Delivery</h4><p>Account details shared right after payment confirmation — usually within minutes.</p></div>
+      <div class="trust reveal"><span class="glyph">💬</span><h4>Always Reachable</h4><p>WhatsApp support for any question before and after your purchase.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Simple Process</span>
+      <h2 class="display">How It Works</h2>
+      <p>Three steps from picking your ID to playing on it.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3><span class="n">1</span> Pick Your ID</h3>
+        <p>Browse the stock or ask on WhatsApp for the full list. We'll send screenshots of everything available.</p></div>
+      <div class="step reveal"><h3><span class="n">2</span> Pay Securely</h3>
+        <p>Pay via UPI, Google Pay or PhonePe. Hand to hand cash deals are also available in Vizag.</p></div>
+      <div class="step reveal"><h3><span class="n">3</span> Take Over</h3>
+        <p>Get the login details and bind the account to your own email. Change the password and you're ready.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Get In Touch</span>
+      <h2 class="display">Contact &amp; Order</h2>
+      <p>WhatsApp is the fastest way to reach us. Every deal is confirmed on chat before payment.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-main reveal">
+        <h3>Direct WhatsApp</h3>
+        <p class="sub">Tap the number to open a chat instantly.</p>
+        <a class="phone" href="https://wa.me/917624890805?text=Hi%20FIREGAMINGRAJU%2C%20I%20want%20to%20buy%20a%20Free%20Fire%20ID" target="_blank" rel="noopener">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg></span>
+          <span><small>WhatsApp</small><b>76248 90805</b></span>
+          <span class="arrow">→</span>
+        </a>
+        <div class="link-row">
+          <a href="https://chat.whatsapp.com/KBCUM0clrHA3J5Sb8rFIuA" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg>
+            WhatsApp Group <span>Join →</span></a>
+          <a href="https://whatsapp.com/channel/0029VaCsAF69RZAglLQBB22g" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg>
+            WhatsApp Channel <span>Follow →</span></a>
+          <a href="https://www.youtube.com/@firegamingraju" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+            YouTube @firegamingraju <span>Subscribe →</span></a>
+          <a href="https://www.instagram.com/firegamingraju" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.93 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.69.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0m0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8m6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88"/></svg>
+            Instagram @firegamingraju <span>Follow →</span></a>
+        </div>
+      </div>
+      <div class="contact-side">
+        <div class="note reveal">
+          <h4>⚠️ Stay Safe From Fakes</h4>
+          <p>Only trust the links on this page. We never ask for OTPs and never message first from another number. Verify you're talking to <strong>76248 90805</strong> before paying anything.</p>
+        </div>
+        <div class="deal-box reveal">
+          <div class="row"><span>Deal Type</span><b>Hand to Hand / Online</b></div>
+          <div class="row"><span>Location</span><b>Vizag, Andhra Pradesh</b></div>
+          <div class="row"><span>Payment</span><b>UPI · GPay · PhonePe · Cash</b></div>
+          <div class="row"><span>Support</span><b class="ok">WhatsApp Daily</b></div>
+          <div class="row"><span>Buying &amp; Selling</span><b class="ok">Both Accepted</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="#ff2230" d="M16 1c1.6 5.2-1.2 7.6-3.4 10.2C10.2 14 8 16.5 8 20.2 8 25.6 11.6 30 16.4 30c4.9 0 8.6-3.9 8.6-8.9 0-4.2-1.8-7-3.6-9.4-1.2-1.6-2.5-3.4-2.5-5.4-1 .9-1.9 2.2-2.4 4C15.1 6.8 16 3.5 16 1z"/>
+            <path fill="#fff" opacity=".92" d="M16.3 17.4c.8 2.6-.6 3.8-1.7 5.1-.8.9-1.4 1.9-1.4 3.2 0 2.1 1.4 3.8 3.2 3.8 1.9 0 3.4-1.6 3.4-3.7 0-1.7-.7-2.8-1.4-3.7-.6-.8-1.2-1.7-1.2-2.7-.4.4-.7 1-.9 1.8-.2-.9 0-2.5 0-3.8z"/>
+          </svg>
+          <b>FIRE<span>GAMING</span>RAJU</b>
+        </a>
+        <p>Free Fire ID buy &amp; sell. Hand to hand deals in Vizag, safe online deals everywhere else.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h5>Site</h5>
+          <a href="#ids">IDs For Sale</a><a href="#community">Community</a>
+          <a href="#how">How It Works</a><a href="#contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h5>Connect</h5>
+          <a href="https://www.youtube.com/@firegamingraju" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/firegamingraju" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://chat.whatsapp.com/KBCUM0clrHA3J5Sb8rFIuA" target="_blank" rel="noopener">WhatsApp Group</a>
+          <a href="https://whatsapp.com/channel/0029VaCsAF69RZAglLQBB22g" target="_blank" rel="noopener">WhatsApp Channel</a>
+        </div>
+        <div class="foot-col">
+          <h5>Contact</h5>
+          <a href="https://wa.me/917624890805" target="_blank" rel="noopener">+91 76248 90805</a>
+          <a href="#contact">Vizag, Andhra Pradesh</a>
+          <a href="admin.html">Manage Stock</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 FIREGAMINGRAJU · All rights reserved.</span>
+      <span>Not affiliated with Garena Free Fire. All trademarks belong to their owners.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/917624890805?text=Hi%20FIREGAMINGRAJU%2C%20I%20want%20to%20buy%20a%20Free%20Fire%20ID" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg>
+</a>
+
+<script>window.FG_DATA={"shop":{"name":"FIREGAMINGRAJU","whatsapp":"917624890805","whatsappDisplay":"76248 90805","place":"Vizag, Andhra Pradesh","instagram":"https://www.instagram.com/firegamingraju","youtube":"https://www.youtube.com/@firegamingraju","group":"https://chat.whatsapp.com/KBCUM0clrHA3J5Sb8rFIuA","channel":"https://whatsapp.com/channel/0029VaCsAF69RZAglLQBB22g"},"products":[{"id":"p_heroic","name":"Heroic Grandmaster ID","glyph":"👑","price":4999,"mrp":8999,"tag":"HOT","tagType":"hot","image":"assets/id-sell-gold.webp","features":["Level 75+ · Grandmaster Rank","50+ Rare Bundles & Skins","Evo Guns Levelled Up","Full Email Access Included"],"available":true},{"id":"p_diamond","name":"Diamond Collection ID","glyph":"💎","price":2499,"mrp":4499,"tag":"BEST VALUE","tagType":"sale","image":"assets/id-sell-gold.webp","features":["Level 65+ · Heroic Rank","30+ Elite Pass Bundles","Rare Gun Skins & Emotes","Instant Transfer"],"available":true},{"id":"p_starter","name":"Starter Pro ID","glyph":"🎯","price":1600,"mrp":1999,"tag":"NEW","tagType":"new","image":"","features":["Level 55+ · Diamond Rank","15+ Premium Bundles","Good K/D Ratio","Perfect For Beginners"],"available":true},{"id":"p_evo","name":"Evo Max Collection","glyph":"🔫","price":6999,"mrp":11999,"tag":"","tagType":"hot","image":"","features":["Level 78+ · Top Regional Rank","Evo Guns Maxed Out","100+ Vault Collection","Rare Legacy Items"],"available":true},{"id":"p_guild","name":"Guild Leader ID","glyph":"⚡","price":3499,"mrp":5999,"tag":"","tagType":"hot","image":"","features":["Level 68+ · High Level Guild","Rare Guild Skins Included","Strong Social Following","Guild Name Change Supported"],"available":true},{"id":"p_grandmaster","name":"Grandmaster Elite ID","glyph":"🏆","price":5499,"mrp":9999,"tag":"TOP TIER","tagType":"hot","image":"","features":["Level 80+ · Grandmaster Rank","60+ Bundles & Rare Sets","Full Evo Gun Collection","Clean Account History"],"available":true},{"id":"p_evo_full","name":"Full Evo Gun Account","glyph":"🎖️","price":8499,"mrp":14999,"tag":"","tagType":"hot","image":"","features":["Level 82+ · All Evo Guns Max","Every Evo Skin Level 7","120+ Vault Bundles","Original Email Access"],"available":true},{"id":"p_azure","name":"Azure Dragon Bundle ID","glyph":"🐉","price":2999,"mrp":4599,"tag":"RARE","tagType":"new","image":"","features":["Level 62+ · Diamond Rank","Azure Dragon Bundle Set","Premium Emotes Included","Instant Delivery"],"available":true},{"id":"p_booyah","name":"Booyah Pass Max Account","glyph":"💥","price":2199,"mrp":3499,"tag":"SALE","tagType":"sale","image":"","features":["Level 60+ · Heroic Rank","All Booyah Pass Items","Rare Vehicle Skins","Ready For Ranked"],"available":true},{"id":"p_sakura","name":"Sakura Collection ID","glyph":"🌸","price":2799,"mrp":4199,"tag":"","tagType":"hot","image":"","features":["Level 63+ · Diamond Rank","Sakura Set + Accessories","Multiple Rare Gloo Walls","Full Access Handover"],"available":true},{"id":"p_headshot","name":"Headshot Master ID","glyph":"🎯","price":1999,"mrp":2999,"tag":"","tagType":"hot","image":"","features":["Level 58+ · Heroic Rank","High K/D Headshot Stats","Rare Gun Skins","No Ban History"],"available":true},{"id":"p_emote","name":"Emote Collector ID","glyph":"🕺","price":1799,"mrp":2699,"tag":"NEW","tagType":"new","image":"","features":["Level 56+ · Platinum Rank","40+ Emotes Unlocked","Popular Dance Sets","Budget Friendly"],"available":true},{"id":"p_vehicle","name":"Vehicle Skin Collection","glyph":"🏎️","price":3299,"mrp":4999,"tag":"","tagType":"hot","image":"","features":["Level 66+ · Heroic Rank","Multiple Vehicle Skins","Rare Bundle Included","Instant Transfer"],"available":true},{"id":"p_vault","name":"Vault Rich Account","glyph":"🗃️","price":4999,"mrp":7999,"tag":"VAULT","tagType":"hot","image":"","features":["Level 70+ · Grandmaster Rank","200+ Vault Items","Exclusive Event Rewards","Verified Ownership"],"available":true},{"id":"p_budget","name":"Budget Starter ID","glyph":"🪙","price":799,"mrp":1299,"tag":"CHEAPEST","tagType":"sale","image":"","features":["Level 40+ · Gold Rank","5+ Bundles Unlocked","Good For Practice","Easy To Level Up"],"available":true},{"id":"p_ranked","name":"Ranked Push Ready ID","glyph":"📈","price":2599,"mrp":3999,"tag":"","tagType":"hot","image":"","features":["Level 61+ · Heroic Rank","Season Rewards Unlocked","Rare Character Set","Fast Ranked Access"],"available":true},{"id":"p_idol","name":"Idol Bundle ID","glyph":"🎤","price":3499,"mrp":5299,"tag":"","tagType":"hot","image":"","features":["Level 67+ · Heroic Rank","Rare Idol Bundle Set","Premium Emote Pack","Full Recovery Details"],"available":true},{"id":"p_tournament","name":"Tournament Ready ID","glyph":"🥇","price":4499,"mrp":6999,"tag":"PRO","tagType":"new","image":"","features":["Level 72+ · Grandmaster Rank","Competitive Gun Skins","Clean Tournament Log","Instant Handover"],"available":true},{"id":"p_legend","name":"Legend Vault ID","glyph":"🌟","price":9499,"mrp":16999,"tag":"PREMIUM","tagType":"hot","image":"","features":["Level 85+ · Legend Rank","250+ Vault Collection","All Event Exclusives","Original Owner Transfer"],"available":true},{"id":"p_bundle_pack","name":"Bundle Lover Pack","glyph":"🎁","price":2899,"mrp":4399,"tag":"","tagType":"hot","image":"","features":["Level 64+ · Heroic Rank","35+ Premium Bundles","Matching Gun Skins","Safe Transfer Included"],"available":true}]};</script>
+<script>
+const WA_ICON = '<svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9A11.8 11.8 0 0 0 12.05 0"/></svg>';
+
+// ticker
+const TICKER_WORDS = ['Hand To Hand Deals','100% Safe & Secure','Buy & Sell','Vizag','Trusted Seller','Instant Delivery'];
+document.getElementById('ticker').innerHTML =
+  [...TICKER_WORDS, ...TICKER_WORDS].map(w => `<span>${w}</span>`).join('');
+
+// embers
+(() => {
+  const box = document.getElementById('embers');
+  if (!box || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < 34; i++) {
+    const e = document.createElement('i');
+    const size = 2 + Math.random() * 3;
+    e.style.cssText = `left:${Math.random() * 100}%;width:${size}px;height:${size}px;` +
+      `--drift:${(Math.random() * 160 - 80).toFixed(0)}px;` +
+      `animation-duration:${(7 + Math.random() * 9).toFixed(1)}s;` +
+      `animation-delay:${(-Math.random() * 14).toFixed(1)}s;`;
+    frag.appendChild(e);
+  }
+  box.appendChild(frag);
+})();
+
+const money = n => '₹' + Number(n).toLocaleString('en-IN');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function waLink(shop, p) {
+  const text = `Hi FIREGAMINGRAJU! I want to buy *${p.name}* (${money(p.price)}). Is it still available?`;
+  return `https://wa.me/${shop.whatsapp}?text=${encodeURIComponent(text)}`;
+}
+
+async function loadData() {
+  // Admin edits saved in this browser win; then the embedded copy (works when
+  // opened by double-click); finally a live fetch of products.json.
+  try {
+    const local = localStorage.getItem('fg_products');
+    if (local) {
+      const parsed = JSON.parse(local);
+      if (parsed && Array.isArray(parsed.products)) return parsed;
+    }
+  } catch (_) {}
+  if (window.FG_DATA) return window.FG_DATA;
+  const res = await fetch('products.json', {cache: 'no-store'});
+  return res.json();
+}
+
+const PAGE = 9;
+
+function renderProducts(shop, products, shown) {
+  const grid = document.getElementById('productGrid');
+  const moreWrap = document.getElementById('moreWrap');
+  const moreBtn = document.getElementById('moreBtn');
+  const moreCount = document.getElementById('moreCount');
+
+  if (!products.length) {
+    grid.innerHTML = '<div class="empty-note">No IDs listed right now — message us on WhatsApp for current stock.</div>';
+    moreWrap.hidden = true;
+    return;
+  }
+
+  const visible = products.slice(0, shown);
+  grid.innerHTML = visible.map(p => {
+    const sold = p.available === false;
+    const FALLBACK = `<div class="noimg"><svg class="flame" viewBox="0 0 32 32"><path fill="#ff2230" d="M16 1c1.6 5.2-1.2 7.6-3.4 10.2C10.2 14 8 16.5 8 20.2 8 25.6 11.6 30 16.4 30c4.9 0 8.6-3.9 8.6-8.9 0-4.2-1.8-7-3.6-9.4-1.2-1.6-2.5-3.4-2.5-5.4-1 .9-1.9 2.2-2.4 4C15.1 6.8 16 3.5 16 1z"/></svg><em>Photo Soon</em></div>`;
+    const shot = p.image
+      ? `<img src="${esc(p.image)}" alt="Free Fire ID for sale" loading="lazy" onerror="this.parentElement.innerHTML='${FALLBACK.replace(/'/g, "\\'")}'">`
+      : FALLBACK;
+    const flag = sold
+      ? '<span class="flag out">Sold Out</span>'
+      : '<span class="flag live">Available</span>';
+    const inner = `
+      ${flag}
+      <div class="shot">${shot}</div>
+      <div class="pricebar"><span class="amt">${money(p.price)}</span></div>
+      <span class="buyhint">${WA_ICON}</span>`;
+    return `<a class="id-card${sold ? ' out' : ''} reveal" href="product.html?id=${encodeURIComponent(p.id)}"
+      aria-label="${sold ? 'Sold out — ' : ''}${money(p.price)} — view details">${inner}</a>`;
+  }).join('');
+
+  const live = products.filter(p => p.available !== false).length;
+  const outCount = products.length - live;
+  document.getElementById('stockStrip').innerHTML =
+    `<span class="stock-pill"><span class="dot"></span><b>${live}</b> ${live === 1 ? 'ID' : 'IDs'} in stock</span>` +
+    (outCount ? `<span class="stock-pill gone"><b>${outCount}</b> sold out</span>` : '');
+
+  moreWrap.hidden = products.length <= shown;
+  moreBtn.textContent = `Show More IDs (${Math.min(PAGE, products.length - shown)} more)`;
+  moreCount.textContent = `Showing ${visible.length} of ${products.length}`;
+  observeReveals();
+}
+
+function observeReveals() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold: .1, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal:not(.in)').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 60 + 'ms';
+    io.observe(el);
+  });
+}
+
+// nav shadow
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive: true});
+
+observeReveals();
+
+let SHOP = {};
+let ALL_PRODUCTS = [];
+let shown = PAGE;
+
+document.getElementById('moreBtn').addEventListener('click', () => {
+  shown += PAGE;
+  renderProducts(SHOP, ALL_PRODUCTS, shown);
+});
+
+loadData()
+  .then(data => {
+    SHOP = data.shop || {};
+    ALL_PRODUCTS = data.products || [];
+    renderProducts(SHOP, ALL_PRODUCTS, shown);
+  })
+  .catch(err => {
+    document.getElementById('productGrid').innerHTML =
+      '<div class="empty-note">Could not load stock. Please message us on WhatsApp.</div>';
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>

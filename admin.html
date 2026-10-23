@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Stock — FIREGAMINGRAJU</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#ff2230;--orange:#ff6a00;--bg:#08080a;--card:#131317;--line:rgba(255,255,255,.09);
+  --muted:#9a9aa5;--grad:linear-gradient(135deg,#ff2230,#ff6a00);--ok:#2ee56b}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{width:min(1180px,94%);margin:0 auto;padding:26px 0 70px}
+
+header{position:sticky;top:0;z-index:30;background:rgba(8,8,10,.9);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);margin-bottom:26px}
+header .bar{width:min(1180px,94%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Anton',sans-serif;letter-spacing:1.4px;
+  font-size:1.05rem;text-transform:uppercase}
+.brand svg{width:28px;height:28px}
+.brand span{color:var(--red)}
+.hbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.hbtn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:8px;font-size:.8rem;font-weight:800;
+  border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;transition:.2s}
+.hbtn:hover{background:rgba(255,255,255,.1)}
+.hbtn.primary{background:var(--grad);border-color:transparent;box-shadow:0 6px 20px rgba(255,34,48,.3)}
+.hbtn.primary:hover{transform:translateY(-1px)}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:26px}
+.panel h2{font-family:'Anton',sans-serif;font-size:1.15rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.panel .hint{font-size:.8rem;color:var(--muted);margin-bottom:20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+label{display:block;font-size:.72rem;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;
+  color:#b9b9c4;margin-bottom:7px}
+input[type=text],input[type=number],input[type=file],select,textarea{
+  width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:9px;
+  padding:11px 13px;color:#fff;font-family:inherit;font-size:.88rem;outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--red);background:rgba(255,34,48,.06)}
+input::placeholder,textarea::placeholder{color:#6b6b76}
+textarea{resize:vertical;min-height:88px;line-height:1.6}
+select option{background:#16161a;color:#fff}
+.field{margin-bottom:14px}
+.row-check{display:flex;align-items:center;gap:10px;font-size:.85rem;color:#cfcfd6}
+.row-check input{width:auto;accent-color:var(--red)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{padding:12px 22px;border-radius:9px;font-weight:800;font-size:.85rem;border:none;color:#fff;transition:.2s}
+.btn-primary{background:var(--grad);box-shadow:0 8px 24px rgba(255,34,48,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,34,48,.45)}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.13)}
+.btn-danger{background:rgba(255,34,48,.14);border:1px solid rgba(255,34,48,.4);color:#ff8a92}
+.btn-danger:hover{background:rgba(255,34,48,.25)}
+.btn-sm{padding:7px 13px;font-size:.75rem;border-radius:7px}
+
+.imgpick{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.imgpick .prev{width:88px;height:88px;border-radius:10px;background:#0a0a0d;border:1px solid var(--line);
+  display:grid;place-items:center;overflow:hidden;flex:none;font-size:1.7rem}
+.imgpick .prev img{width:100%;height:100%;object-fit:cover}
+
+.galwrap{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start}
+.galgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;flex:1;min-width:240px}
+.galtile{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#0a0a0d;
+  border:1px solid var(--line)}
+.galtile img{width:100%;height:100%;object-fit:cover}
+.galtile .rm{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:none;
+  background:rgba(8,8,10,.85);color:#ff8a92;font-size:.8rem;line-height:1;display:grid;place-items:center}
+.galtile .rm:hover{background:#ff2230;color:#fff}
+.galtile .idx{position:absolute;left:5px;bottom:5px;background:rgba(8,8,10,.85);font-size:.58rem;
+  font-weight:900;padding:2px 6px;border-radius:4px}
+.galadd{min-width:200px;flex:1}
+.galhint{font-size:.74rem;color:#7a6e7a;line-height:1.55;margin-top:7px}
+
+.list{display:flex;flex-direction:column;gap:10px}
+.item{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;padding:12px;
+  border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.02);transition:.2s}
+.item:hover{border-color:rgba(255,34,48,.32);background:rgba(255,34,48,.04)}
+.item .th{width:56px;height:56px;border-radius:8px;overflow:hidden;background:#0a0a0d;display:grid;place-items:center;font-size:1.4rem}
+.item .th img{width:100%;height:100%;object-fit:cover}
+.item .nm{font-weight:800;font-size:.92rem;margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.item .meta{font-size:.78rem;color:var(--muted)}
+.item .meta b{color:#fff}
+.pill{font-size:.58rem;font-weight:900;letter-spacing:1px;padding:3px 7px;border-radius:4px;text-transform:uppercase}
+.pill.on{background:rgba(46,229,107,.16);color:var(--ok);border:1px solid rgba(46,229,107,.35)}
+.pill.off{background:rgba(255,34,48,.12);color:#ff8a92;border:1px solid rgba(255,34,48,.35)}
+.item .ops{display:flex;gap:7px}
+
+.note{font-size:.78rem;color:var(--muted);line-height:1.65;background:rgba(255,180,0,.07);
+  border:1px solid rgba(255,180,0,.25);border-radius:10px;padding:13px 15px;margin-bottom:18px}
+.note b{color:#ffd166}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,80px);z-index:99;background:#171b1a;
+  border:1px solid rgba(46,229,107,.4);color:#eaffef;padding:13px 22px;border-radius:10px;font-size:.85rem;
+  font-weight:600;opacity:0;transition:.3s;pointer-events:none;box-shadow:0 16px 40px rgba(0,0,0,.6)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.err{border-color:rgba(255,34,48,.5);background:#1d1113}
+.empty{text-align:center;padding:34px;color:var(--muted);font-size:.86rem;border:1px dashed var(--line);border-radius:11px}
+@media(max-width:820px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .item{grid-template-columns:48px 1fr;grid-template-areas:'th info' 'ops ops'}
+  .item .th{grid-area:th;width:48px;height:48px}
+  .item .info{grid-area:info}
+  .item .ops{grid-area:ops;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32"><path fill="#ff2230" d="M16 1c1.6 5.2-1.2 7.6-3.4 10.2C10.2 14 8 16.5 8 20.2 8 25.6 11.6 30 16.4 30c4.9 0 8.6-3.9 8.6-8.9 0-4.2-1.8-7-3.6-9.4-1.2-1.6-2.5-3.4-2.5-5.4-1 .9-1.9 2.2-2.4 4C15.1 6.8 16 3.5 16 1z"/><path fill="#fff" opacity=".92" d="M16.3 17.4c.8 2.6-.6 3.8-1.7 5.1-.8.9-1.4 1.9-1.4 3.2 0 2.1 1.4 3.8 3.2 3.8 1.9 0 3.4-1.6 3.4-3.7 0-1.7-.7-2.8-1.4-3.7-.6-.8-1.2-1.7-1.2-2.7-.4.4-.7 1-.9 1.8-.2-.9 0-2.5 0-3.8z"/></svg>
+      FIRE<span>GAMING</span>RAJU &nbsp;·&nbsp; Stock Manager
+    </a>
+    <div class="hbar">
+      <a class="hbtn" href="index.html" target="_blank">View Site →</a>
+      <button class="hbtn" id="exportBtn">Download products.json</button>
+      <button class="hbtn primary" id="saveBtn">Save Changes</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="note">
+    <b>How saving works.</b> Your edits are stored in this browser and appear on the site immediately.
+    To publish them for everyone, hit <b>Download products.json</b> and replace the
+    <code>products.json</code> file in the site folder with it.
+  </div>
+
+  <section class="panel">
+    <h2 id="formTitle">Add New ID</h2>
+    <p class="hint">Fill in the details, upload a screenshot, then save. Leave the image empty to show the emoji instead.</p>
+
+    <form id="prodForm">
+      <input type="hidden" id="f_id">
+
+      <div class="grid2">
+        <div class="field">
+          <label for="f_name">ID Name *</label>
+          <input type="text" id="f_name" placeholder="e.g. Heroic Grandmaster ID" required>
+        </div>
+        <div class="field">
+          <label for="f_glyph">Emoji / Icon</label>
+          <input type="text" id="f_glyph" placeholder="👑" maxlength="8">
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="field">
+          <label for="f_price">Price (₹) *</label>
+          <input type="number" id="f_price" placeholder="2499" min="0" required>
+        </div>
+        <div class="field">
+          <label for="f_mrp">Old / Strike Price (₹)</label>
+          <input type="number" id="f_mrp" placeholder="4499" min="0">
+        </div>
+        <div class="field">
+          <label for="f_tagType">Ribbon</label>
+          <select id="f_tagType">
+            <option value="">No ribbon</option>
+            <option value="hot">Red — HOT</option>
+            <option value="sale">Green — BEST VALUE</option>
+            <option value="new">Purple — NEW</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f_tag">Ribbon Text</label>
+        <input type="text" id="f_tag" placeholder="HOT" maxlength="16">
+      </div>
+
+      <div class="field">
+        <label>Main Photo <span style="color:#7a6e7a;font-weight:600;letter-spacing:0;text-transform:none">— shown on the card</span></label>
+        <div class="imgpick">
+          <div class="prev" id="preview">🎮</div>
+          <div style="flex:1;min-width:220px">
+            <input type="file" id="f_file" accept="image/*" style="margin-bottom:8px">
+            <input type="text" id="f_image" placeholder="…or paste an image path: assets/my-id.webp">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Detail Photos <span style="color:#7a6e7a;font-weight:600;letter-spacing:0;text-transform:none">— up to 10, shown in the gallery</span></label>
+        <div class="galwrap">
+          <div class="galgrid" id="galGrid"></div>
+          <div class="galadd">
+            <input type="file" id="f_galFile" accept="image/*" multiple>
+            <div class="galhint">Add up to 10 screenshots. They appear under “All Photos” on the product page.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f_video">Watch Full Video Link <span style="color:#7a6e7a;font-weight:600;letter-spacing:0;text-transform:none">— per product</span></label>
+        <input type="text" id="f_video" placeholder="https://whatsapp.com/channel/… or any video URL">
+        <div class="galhint" style="margin-top:6px">Paste the direct link for this ID's video. Leave empty to show “Video Coming Soon”.</div>
+      </div>
+
+      <div class="field">
+        <label for="f_features">Features — one per line</label>
+        <textarea id="f_features" placeholder="Level 75+ · Grandmaster Rank&#10;50+ Rare Bundles &amp; Skins&#10;Full Email Access Included"></textarea>
+      </div>
+
+      <div class="field row-check">
+        <input type="checkbox" id="f_available" checked>
+        <label for="f_available" style="margin:0;text-transform:none;letter-spacing:0;font-weight:600;font-size:.85rem;color:#cfcfd6">Available for sale (uncheck to mark as Sold Out)</label>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" id="submitBtn">Add ID</button>
+        <button type="button" class="btn btn-ghost" id="resetBtn">Clear Form</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Current Stock <span id="count" style="color:var(--red)"></span></h2>
+    <p class="hint">Edit marks an item for editing above. Sold Out keeps it visible but greys out the buy button.</p>
+    <div class="list" id="list"><div class="empty">Loading…</div></div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY = 'fg_products';
+let shop = {
+  name: 'FIREGAMINGRAJU',
+  whatsapp: '917624890805',
+  whatsappDisplay: '76248 90805',
+  place: 'Vizag, Andhra Pradesh',
+  instagram: 'https://www.instagram.com/firegamingraju',
+  youtube: 'https://www.youtube.com/@firegamingraju',
+  group: 'https://chat.whatsapp.com/KBCUM0clrHA3J5Sb8rFIuA',
+  channel: 'https://whatsapp.com/channel/0029VaCsAF69RZAglLQBB22g'
+};
+let products = [];
+let editingId = null;
+let gallery = [];      // detail photos for the product being edited/added
+
+const $ = id => document.getElementById(id);
+const money = n => '₹' + Number(n).toLocaleString('en-IN');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function toast(msg, isErr) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.toggle('err', !!isErr);
+  t.classList.add('show');
+  clearTimeout(t._h);
+  t._h = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+async function boot() {
+  let data = null;
+  try {
+    const local = localStorage.getItem(KEY);
+    if (local) data = JSON.parse(local);
+  } catch (_) {}
+  if (!data || !Array.isArray(data.products)) {
+    try {
+      const res = await fetch('products.json', {cache: 'no-store'});
+      data = await res.json();
+    } catch (e) {
+      data = {shop, products: []};
+    }
+  }
+  shop = Object.assign(shop, data.shop || {});
+  products = data.products || [];
+  render();
+}
+
+function persist(showToast) {
+  localStorage.setItem(KEY, JSON.stringify({shop, products}));
+  if (showToast) toast('Saved — the site is updated');
+  render();
+}
+
+function render() {
+  $('count').textContent = `(${products.length})`;
+  const list = $('list');
+  if (!products.length) {
+    list.innerHTML = '<div class="empty">No IDs yet. Add your first one above.</div>';
+    return;
+  }
+  list.innerHTML = products.map((p, i) => {
+    const th = p.image
+      ? `<img src="${esc(p.image)}" alt="" onerror="this.parentElement.textContent='${esc(p.glyph || '🎮')}'">`
+      : esc(p.glyph || '🎮');
+    const avail = p.available !== false;
+    return `<div class="item">
+      <div class="th">${th}</div>
+      <div class="info">
+        <div class="nm">${esc(p.name)}
+          <span class="pill ${avail ? 'on' : 'off'}">${avail ? 'Live' : 'Sold Out'}</span>
+        </div>
+        <div class="meta"><b>${money(p.price)}</b>${p.mrp ? ` · was ${money(p.mrp)}` : ''} · ${(p.gallery || []).length} photos · ${p.video ? '<span style="color:#2ee56b">video ✓</span>' : 'no video'}</div>
+      </div>
+      <div class="ops">
+        <button class="btn btn-ghost btn-sm" data-edit="${i}">Edit</button>
+        <button class="btn btn-ghost btn-sm" data-toggle="${i}">${avail ? 'Sold Out' : 'Relist'}</button>
+        <button class="btn btn-danger btn-sm" data-del="${i}">Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+$('list').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  if (btn.dataset.edit !== undefined) startEdit(+btn.dataset.edit);
+  else if (btn.dataset.toggle !== undefined) {
+    const p = products[+btn.dataset.toggle];
+    p.available = p.available === false;
+    persist(true);
+  } else if (btn.dataset.del !== undefined) {
+    const p = products[+btn.dataset.del];
+    if (!confirm(`Delete "${p.name}"? This cannot be undone.`)) return;
+    products.splice(+btn.dataset.del, 1);
+    if (editingId === p.id) resetForm();
+    persist(true);
+    toast('ID deleted');
+  }
+});
+
+function startEdit(i) {
+  const p = products[i];
+  editingId = p.id;
+  $('formTitle').textContent = 'Edit ID';
+  $('submitBtn').textContent = 'Save Changes';
+  $('f_id').value = p.id;
+  $('f_name').value = p.name || '';
+  $('f_glyph').value = p.glyph || '';
+  $('f_price').value = p.price ?? '';
+  $('f_mrp').value = p.mrp ?? '';
+  $('f_tagType').value = p.tagType || '';
+  $('f_tag').value = p.tag || '';
+  $('f_image').value = p.image || '';
+  $('f_features').value = (p.features || []).join('\n');
+  $('f_available').checked = p.available !== false;
+  $('f_video').value = p.video || '';
+  $('f_file').value = '';
+  $('f_galFile').value = '';
+  gallery = (p.gallery || []).slice(0, 10);
+  renderGallery();
+  updatePreview(p.image, p.glyph);
+  $('prodForm').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function renderGallery() {
+  const g = $('galGrid');
+  g.innerHTML = gallery.map((src, i) => `
+    <div class="galtile">
+      <img src="${esc(src)}" alt="">
+      <span class="idx">${i + 1}</span>
+      <button type="button" class="rm" data-rm="${i}" aria-label="Remove photo">✕</button>
+    </div>`).join('');
+  g.querySelectorAll('[data-rm]').forEach(b => {
+    b.addEventListener('click', () => {
+      gallery.splice(+b.dataset.rm, 1);
+      renderGallery();
+    });
+  });
+}
+
+function compress(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const max = 1000;
+        const scale = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale);
+        c.height = Math.round(img.height * scale);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        resolve(c.toDataURL('image/jpeg', 0.82));
+      };
+      img.onerror = () => reject(new Error('bad image'));
+      img.src = reader.result;
+    };
+    reader.onerror = () => reject(new Error('read failed'));
+    reader.readAsDataURL(file);
+  });
+}
+
+$('f_galFile').addEventListener('change', async e => {
+  const files = [...(e.target.files || [])];
+  if (!files.length) return;
+  const room = 10 - gallery.length;
+  if (room <= 0) { toast('Gallery is full — remove a photo first', true); e.target.value = ''; return; }
+  const use = files.slice(0, room);
+  if (files.length > room) toast(`Adding ${room} of ${files.length} — max 10 photos`, true);
+  for (const f of use) {
+    try {
+      gallery.push(await compress(f));
+    } catch (_) { toast('One photo could not be read', true); }
+  }
+  renderGallery();
+  e.target.value = '';
+  toast(`${gallery.length} detail photo${gallery.length === 1 ? '' : 's'} ready`);
+});
+
+function updatePreview(src, glyph) {
+  const prev = $('preview');
+  prev.innerHTML = src ? `<img src="${esc(src)}" alt="" onerror="this.parentElement.textContent='${esc(glyph || '🎮')}'">` : esc(glyph || '🎮');
+}
+
+function resetForm() {
+  editingId = null;
+  $('prodForm').reset();
+  $('f_id').value = '';
+  $('f_available').checked = true;
+  $('f_video').value = '';
+  pendingImage = null;
+  gallery = [];
+  renderGallery();
+  $('formTitle').textContent = 'Add New ID';
+  $('submitBtn').textContent = 'Add ID';
+  updatePreview('', '🎮');
+}
+
+$('resetBtn').addEventListener('click', resetForm);
+
+// image handling
+let pendingImage = null;
+
+$('f_file').addEventListener('change', e => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  if (file.size > 1.6 * 1024 * 1024) {
+    toast('Image is large — compressing…');
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      // downscale to max 1000px and re-encode as JPEG to keep it light
+      const max = 1000;
+      const scale = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * scale);
+      c.height = Math.round(img.height * scale);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      const dataUrl = c.toDataURL('image/jpeg', 0.85);
+      pendingImage = dataUrl;
+      $('f_image').value = '';
+      updatePreview(dataUrl, $('f_glyph').value);
+      toast('Photo ready');
+    };
+    img.onerror = () => toast('Could not read that image', true);
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+$('f_image').addEventListener('input', e => {
+  pendingImage = null;
+  updatePreview(e.target.value.trim(), $('f_glyph').value);
+});
+$('f_glyph').addEventListener('input', e => {
+  if (!$('f_image').value && !pendingImage) updatePreview('', e.target.value);
+});
+
+$('prodForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('f_name').value.trim();
+  const price = Number($('f_price').value);
+  if (!name) return toast('Give the ID a name', true);
+  if (!price || price < 0) return toast('Enter a valid price', true);
+
+  const features = $('f_features').value.split('\n').map(s => s.trim()).filter(Boolean);
+  const image = pendingImage || $('f_image').value.trim();
+
+  const data = {
+    id: editingId || 'p_' + Date.now().toString(36),
+    name,
+    glyph: $('f_glyph').value.trim() || '🎮',
+    price,
+    mrp: Number($('f_mrp').value) || 0,
+    tag: $('f_tag').value.trim().toUpperCase(),
+    tagType: $('f_tagType').value || 'hot',
+    image,
+    gallery: gallery.slice(0, 10),
+    video: $('f_video').value.trim(),
+    features,
+    available: $('f_available').checked
+  };
+  if (!data.tag) data.tagType = '';
+
+  if (editingId) {
+    const i = products.findIndex(p => p.id === editingId);
+    if (i > -1) products[i] = data;
+    toast('ID updated');
+  } else {
+    products.unshift(data);
+    toast('ID added');
+  }
+  pendingImage = null;
+  persist(false);
+  resetForm();
+});
+
+// top bar
+$('saveBtn').addEventListener('click', () => persist(true));
+
+$('exportBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify({shop, products}, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'products.json';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast('products.json downloaded');
+});
+
+boot();
+</script>
+
+</body>
+</html>

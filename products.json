@@ -1,0 +1,354 @@
+{
+  "shop": {
+    "name": "FIREGAMINGRAJU",
+    "whatsapp": "917624890805",
+    "whatsappDisplay": "76248 90805",
+    "place": "Vizag, Andhra Pradesh",
+    "instagram": "https://www.instagram.com/firegamingraju",
+    "youtube": "https://www.youtube.com/@firegamingraju",
+    "group": "https://chat.whatsapp.com/KBCUM0clrHA3J5Sb8rFIuA",
+    "channel": "https://whatsapp.com/channel/0029VaCsAF69RZAglLQBB22g"
+  },
+  "products": [
+    {
+      "id": "p_heroic",
+      "name": "Heroic Grandmaster ID",
+      "glyph": "👑",
+      "price": 4999,
+      "mrp": 8999,
+      "tag": "HOT",
+      "tagType": "hot",
+      "image": "assets/id-sell-gold.webp",
+      "features": [
+        "Level 75+ · Grandmaster Rank",
+        "50+ Rare Bundles & Skins",
+        "Evo Guns Levelled Up",
+        "Full Email Access Included"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_diamond",
+      "name": "Diamond Collection ID",
+      "glyph": "💎",
+      "price": 2499,
+      "mrp": 4499,
+      "tag": "BEST VALUE",
+      "tagType": "sale",
+      "image": "assets/id-sell-gold.webp",
+      "features": [
+        "Level 65+ · Heroic Rank",
+        "30+ Elite Pass Bundles",
+        "Rare Gun Skins & Emotes",
+        "Instant Transfer"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_starter",
+      "name": "Starter Pro ID",
+      "glyph": "🎯",
+      "price": 1600,
+      "mrp": 1999,
+      "tag": "NEW",
+      "tagType": "new",
+      "image": "",
+      "features": [
+        "Level 55+ · Diamond Rank",
+        "15+ Premium Bundles",
+        "Good K/D Ratio",
+        "Perfect For Beginners"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_evo",
+      "name": "Evo Max Collection",
+      "glyph": "🔫",
+      "price": 6999,
+      "mrp": 11999,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 78+ · Top Regional Rank",
+        "Evo Guns Maxed Out",
+        "100+ Vault Collection",
+        "Rare Legacy Items"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_guild",
+      "name": "Guild Leader ID",
+      "glyph": "⚡",
+      "price": 3499,
+      "mrp": 5999,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 68+ · High Level Guild",
+        "Rare Guild Skins Included",
+        "Strong Social Following",
+        "Guild Name Change Supported"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_grandmaster",
+      "name": "Grandmaster Elite ID",
+      "glyph": "🏆",
+      "price": 5499,
+      "mrp": 9999,
+      "tag": "TOP TIER",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 80+ · Grandmaster Rank",
+        "60+ Bundles & Rare Sets",
+        "Full Evo Gun Collection",
+        "Clean Account History"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_evo_full",
+      "name": "Full Evo Gun Account",
+      "glyph": "🎖️",
+      "price": 8499,
+      "mrp": 14999,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 82+ · All Evo Guns Max",
+        "Every Evo Skin Level 7",
+        "120+ Vault Bundles",
+        "Original Email Access"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_azure",
+      "name": "Azure Dragon Bundle ID",
+      "glyph": "🐉",
+      "price": 2999,
+      "mrp": 4599,
+      "tag": "RARE",
+      "tagType": "new",
+      "image": "",
+      "features": [
+        "Level 62+ · Diamond Rank",
+        "Azure Dragon Bundle Set",
+        "Premium Emotes Included",
+        "Instant Delivery"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_booyah",
+      "name": "Booyah Pass Max Account",
+      "glyph": "💥",
+      "price": 2199,
+      "mrp": 3499,
+      "tag": "SALE",
+      "tagType": "sale",
+      "image": "",
+      "features": [
+        "Level 60+ · Heroic Rank",
+        "All Booyah Pass Items",
+        "Rare Vehicle Skins",
+        "Ready For Ranked"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_sakura",
+      "name": "Sakura Collection ID",
+      "glyph": "🌸",
+      "price": 2799,
+      "mrp": 4199,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 63+ · Diamond Rank",
+        "Sakura Set + Accessories",
+        "Multiple Rare Gloo Walls",
+        "Full Access Handover"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_headshot",
+      "name": "Headshot Master ID",
+      "glyph": "🎯",
+      "price": 1999,
+      "mrp": 2999,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 58+ · Heroic Rank",
+        "High K/D Headshot Stats",
+        "Rare Gun Skins",
+        "No Ban History"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_emote",
+      "name": "Emote Collector ID",
+      "glyph": "🕺",
+      "price": 1799,
+      "mrp": 2699,
+      "tag": "NEW",
+      "tagType": "new",
+      "image": "",
+      "features": [
+        "Level 56+ · Platinum Rank",
+        "40+ Emotes Unlocked",
+        "Popular Dance Sets",
+        "Budget Friendly"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_vehicle",
+      "name": "Vehicle Skin Collection",
+      "glyph": "🏎️",
+      "price": 3299,
+      "mrp": 4999,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 66+ · Heroic Rank",
+        "Multiple Vehicle Skins",
+        "Rare Bundle Included",
+        "Instant Transfer"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_vault",
+      "name": "Vault Rich Account",
+      "glyph": "🗃️",
+      "price": 4999,
+      "mrp": 7999,
+      "tag": "VAULT",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 70+ · Grandmaster Rank",
+        "200+ Vault Items",
+        "Exclusive Event Rewards",
+        "Verified Ownership"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_budget",
+      "name": "Budget Starter ID",
+      "glyph": "🪙",
+      "price": 799,
+      "mrp": 1299,
+      "tag": "CHEAPEST",
+      "tagType": "sale",
+      "image": "",
+      "features": [
+        "Level 40+ · Gold Rank",
+        "5+ Bundles Unlocked",
+        "Good For Practice",
+        "Easy To Level Up"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_ranked",
+      "name": "Ranked Push Ready ID",
+      "glyph": "📈",
+      "price": 2599,
+      "mrp": 3999,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 61+ · Heroic Rank",
+        "Season Rewards Unlocked",
+        "Rare Character Set",
+        "Fast Ranked Access"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_idol",
+      "name": "Idol Bundle ID",
+      "glyph": "🎤",
+      "price": 3499,
+      "mrp": 5299,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 67+ · Heroic Rank",
+        "Rare Idol Bundle Set",
+        "Premium Emote Pack",
+        "Full Recovery Details"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_tournament",
+      "name": "Tournament Ready ID",
+      "glyph": "🥇",
+      "price": 4499,
+      "mrp": 6999,
+      "tag": "PRO",
+      "tagType": "new",
+      "image": "",
+      "features": [
+        "Level 72+ · Grandmaster Rank",
+        "Competitive Gun Skins",
+        "Clean Tournament Log",
+        "Instant Handover"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_legend",
+      "name": "Legend Vault ID",
+      "glyph": "🌟",
+      "price": 9499,
+      "mrp": 16999,
+      "tag": "PREMIUM",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 85+ · Legend Rank",
+        "250+ Vault Collection",
+        "All Event Exclusives",
+        "Original Owner Transfer"
+      ],
+      "available": true
+    },
+    {
+      "id": "p_bundle_pack",
+      "name": "Bundle Lover Pack",
+      "glyph": "🎁",
+      "price": 2899,
+      "mrp": 4399,
+      "tag": "",
+      "tagType": "hot",
+      "image": "",
+      "features": [
+        "Level 64+ · Heroic Rank",
+        "35+ Premium Bundles",
+        "Matching Gun Skins",
+        "Safe Transfer Included"
+      ],
+      "available": true
+    }
+  ]
+}
