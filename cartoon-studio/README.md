@@ -1,14 +1,19 @@
-# Fire Cartoon Studio 🎬
+# Naa Idea Cartoon Studio 🎬 (నా ఐడియా)
 
-No-voice action cartoon shorts for YouTube Shorts / Instagram Reels (1080x1920, 30fps).
+No-voice action cartoon shorts for YouTube Shorts / Instagram Reels (@naaidea39).
+All animation, motion graphics, music and sound effects are generated in code: nothing copyrighted, no voices.
 
-**Episode 1: "Robot Drop"** (13 seconds): an orange cat hero, a purple robot villain, BOOM, ZAP, POW, a victory dance, and a Subscribe end card.
-All the animation, music, and sound effects are generated in code. No voices.
+| File | What it is |
+|---|---|
+| `engine.py` | Shared engine: easing, camera zoom/shake/flash, bubbles, text (Telugu + English), synth audio, MP4 encoding |
+| `characters.py` | Cast: Bujji, Peddayya, Kodi King + props (bomb, flowerpot, chair) |
+| `ep01_diwali_bomb.py` | EP-1 "దీపావళి బాంబు" (38 s) → `ep01_diwali_bomb.mp4` |
+| `EP01_SCRIPT.md` | EP-1 scene-by-scene script + upload title/description |
+| `make_short.py` | First test short "Robot Drop" (13 s) |
+| `fonts/` | Noto Sans Telugu (SIL Open Font License) |
 
-## How to make the video
+## Make a video
 ```bash
 pip install pillow numpy      # ffmpeg is also needed
-python3 make_short.py -o robot_drop_short.mp4
+python3 ep01_diwali_bomb.py -o ep01_diwali_bomb.mp4
 ```
-
-The ready video is `robot_drop_short.mp4`, so you can upload it directly.
