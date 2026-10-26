@@ -38,7 +38,7 @@ const PUPIL = () => mat(0x1a1210, { roughness: 0.1, clearcoat: 1, sheen: 0 });
 const SHINE = () => mat(0xffffff, { roughness: 0.0, emissive: 0xffffff, emissiveIntensity: 0.6 });
 
 // Cartoon eye with iris, pupil and highlight. Returns { eye, pupilGroup, lid } for blinks / looks.
-function cartoonEye(parent, pos, r, irisColor, skin) {
+export function cartoonEye(parent, pos, r, irisColor, skin) {
   const eye = group(parent, pos);
   mesh(S(r), EYE_WHITE(), eye, [0, 0, 0], [1, 1.15, 0.7]);
   const look = group(eye, [0, 0, 0]);
@@ -54,13 +54,13 @@ function cartoonEye(parent, pos, r, irisColor, skin) {
   return { eye, look, lid };
 }
 
-function smile(parent, pos, r, tube, color = 0x5a1a1a) {
+export function smile(parent, pos, r, tube, color = 0x5a1a1a) {
   const g = group(parent, pos);
   const m = mesh(new THREE.TorusGeometry(r, tube, 12, 32, Math.PI), mat(color), g, [0, 0, 0], [1, 1, 1], [0, 0, Math.PI]);
   return g;
 }
 
-function openMouth(parent, pos, r) {
+export function openMouth(parent, pos, r) {
   const g = group(parent, pos);
   mesh(S(r), mat(0x7a1c24, { roughness: 0.4 }), g, [0, 0, 0], [1, 0.8, 0.35]);
   mesh(S(r * 0.55), mat(0xe86a7a), g, [0, -r * 0.35, r * 0.15], [1, 0.5, 0.3]);
