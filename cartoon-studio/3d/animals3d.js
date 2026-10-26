@@ -3,10 +3,17 @@
 // rig = named joints for the timeline.
 import * as THREE from 'three';
 import { mat, mesh, group, cartoonEye, smile, openMouth } from './cast3d.js';
+import { furNormal } from './textures.js';
 
 const S = (r, w = 48, h = 32) => new THREE.SphereGeometry(r, w, h);
 const CAP = (r, len) => new THREE.CapsuleGeometry(r, len, 12, 24);
-const fur = (c, extra = {}) => mat(c, { roughness: 0.6, sheen: 0.2, sheenRoughness: 0.6, sheenColor: c, ...extra });
+const furCache = {};
+// natural fur: soft sheen + fine strand normal map
+const fur = (c) => furCache[c] || (furCache[c] = new THREE.MeshPhysicalMaterial({
+  color: c, roughness: 0.85, sheen: 0.4, sheenRoughness: 0.7,
+  sheenColor: new THREE.Color(c).lerp(new THREE.Color(0xffffff), 0.35),
+  normalMap: furNormal(), normalScale: new THREE.Vector2(0.15, 0.15),
+}));
 
 function tube(points, r, material, parent) {
   const curve = new THREE.CatmullRomCurve3(points.map(p => new THREE.Vector3(...p)));
@@ -15,7 +22,7 @@ function tube(points, r, material, parent) {
 
 // ------------------------------------------------------------------ Monkey
 export function makeMonkey() {
-  const brown = fur(0x94491a), tan = fur(0xffd09a);
+  const brown = fur(0x6b3c1c), tan = fur(0xd9a77c);
   const root = new THREE.Group();
   const rig = {};
   const body = rig.body = group(root, [0, 0, 0]);
@@ -32,8 +39,8 @@ export function makeMonkey() {
   mesh(S(0.2), brown, torso, [0, 0.13, 0], [1, 1.15, 0.9]);
   mesh(S(0.15), tan, torso, [0, 0.1, 0.1], [0.95, 1.1, 0.75]);
   // red bandana
-  mesh(new THREE.TorusGeometry(0.11, 0.035, 12, 32), mat(0xff1f3d, { roughness: 0.5 }), torso, [0, 0.33, 0], [1, 1, 1], [Math.PI / 2, 0, 0]);
-  mesh(new THREE.ConeGeometry(0.07, 0.12, 3), mat(0xff1f3d, { roughness: 0.5 }), torso, [0, 0.27, 0.1], [1, 1, 0.4], [Math.PI, 0, 0]);
+  mesh(new THREE.TorusGeometry(0.11, 0.035, 12, 32), mat(0xb81c26, { roughness: 0.8 }), torso, [0, 0.33, 0], [1, 1, 1], [Math.PI / 2, 0, 0]);
+  mesh(new THREE.ConeGeometry(0.07, 0.12, 3), mat(0xb81c26, { roughness: 0.8 }), torso, [0, 0.27, 0.1], [1, 1, 0.4], [Math.PI, 0, 0]);
   // looong arms
   rig.arms = [-1, 1].map(side => {
     const sh = group(torso, [side * 0.17, 0.26, 0]);
@@ -64,7 +71,7 @@ export function makeMonkey() {
   // big round ears
   for (const side of [-1, 1]) {
     mesh(S(0.11), brown, head, [side * 0.29, 0.03, -0.02], [0.45, 1, 1]);
-    mesh(S(0.075), mat(0xff9aa8, { roughness: 0.6 }), head, [side * 0.31, 0.03, 0.01], [0.3, 1, 1]);
+    mesh(S(0.075), mat(0xc98a7a, { roughness: 0.7 }), head, [side * 0.31, 0.03, 0.01], [0.3, 1, 1]);
   }
   // heart-shaped face mask + big muzzle
   mesh(S(0.12), tan, head, [-0.075, 0.05, 0.17], [1, 1.1, 0.7]);
@@ -73,7 +80,7 @@ export function makeMonkey() {
   mesh(S(0.15), tan, muzzle, [0, 0, 0], [1.15, 0.85, 0.8]);
   mesh(S(0.017), mat(0x2a1a12), muzzle, [-0.03, 0.06, 0.12]);
   mesh(S(0.017), mat(0x2a1a12), muzzle, [0.03, 0.06, 0.12]);
-  rig.eyes = [-1, 1].map(side => cartoonEye(head, [side * 0.075, 0.07, 0.24], 0.07, 0x6b3a12, 0xffd09a));
+  rig.eyes = [-1, 1].map(side => cartoonEye(head, [side * 0.075, 0.07, 0.24], 0.07, 0x5a3418, 0xd9a77c));
   rig.brows = [-1, 1].map(side => {
     const b = group(head, [side * 0.08, 0.18, 0.24]);
     mesh(CAP(0.016, 0.07), mat(0x4a2a14), b, [0, 0, 0], [1, 1, 1], [0, 0, Math.PI / 2 + side * 0.25]);
@@ -91,7 +98,7 @@ export function makeMonkey() {
 
 // ------------------------------------------------------------------ Bulldog
 export function makeBulldog() {
-  const coat = fur(0xf5a33c), cream = fur(0xfff6e6), dark = fur(0xb85a1c);
+  const coat = fur(0xc98d52), cream = fur(0xefe2cc), dark = fur(0x7c4a26);
   const root = new THREE.Group();
   const rig = {};
   const body = rig.body = group(root, [0, 0, 0]);
@@ -120,7 +127,7 @@ export function makeBulldog() {
   });
   // spiked collar
   const collar = group(torso, [0, 0.58, 0]);
-  mesh(new THREE.TorusGeometry(0.21, 0.04, 12, 40), mat(0xff1f3d, { roughness: 0.35, clearcoat: 0.8 }), collar, [0, 0, 0], [1, 1, 1], [Math.PI / 2, 0, 0]);
+  mesh(new THREE.TorusGeometry(0.21, 0.04, 12, 40), mat(0x9c1c22, { roughness: 0.55 }), collar, [0, 0, 0], [1, 1, 1], [Math.PI / 2, 0, 0]);
   for (let i = 0; i < 9; i++) {
     const a = (i / 9) * Math.PI * 2;
     const spike = group(collar, [0, 0, 0]);
@@ -141,7 +148,7 @@ export function makeBulldog() {
     return e;
   });
   // grumpy heavy-lidded eyes
-  rig.eyes = [-1, 1].map(side => cartoonEye(head, [side * 0.11, 0.08, 0.25], 0.065, 0x4a2a10, 0xf5a33c));
+  rig.eyes = [-1, 1].map(side => cartoonEye(head, [side * 0.11, 0.08, 0.25], 0.065, 0x3a2a1a, 0xc98d52));
   rig.brows = [-1, 1].map(side => {
     const b = group(head, [side * 0.11, 0.17, 0.27]);
     mesh(CAP(0.03, 0.1), dark, b, [0, 0, 0], [1, 1, 1], [0, 0, Math.PI / 2 - side * 0.3]);
@@ -161,8 +168,8 @@ export function makeBulldog() {
 
 // ------------------------------------------------------------------ Rooster
 export function makeRooster() {
-  const white = fur(0xffffff), orange = mat(0xff9a00, { roughness: 0.4 });
-  const red = mat(0xff1a2e, { roughness: 0.3, clearcoat: 0.8 });
+  const white = fur(0xf2efe6), orange = mat(0xd88a24, { roughness: 0.6 });
+  const red = mat(0xc41e26, { roughness: 0.45, clearcoat: 0.3 });
   const root = new THREE.Group();
   const rig = {};
   const body = rig.body = group(root, [0, 0, 0]);
@@ -179,14 +186,14 @@ export function makeRooster() {
   mesh(S(0.15), white, torso, [0, 0.06, 0.15], [1.1, 1, 0.9]);  // puffed chest
   rig.wings = [-1, 1].map(side => {
     const w = group(torso, [side * 0.2, 0.04, -0.03]);
-    mesh(S(0.13), fur(0xf4f4f4), w, [0, 0, -0.04], [0.35, 0.75, 1.2]);
+    mesh(S(0.13), fur(0xe8e2d4), w, [0, 0, -0.04], [0.35, 0.75, 1.2]);
     return w;
   });
   rig.tail = group(torso, [0, 0.08, -0.22]);
-  [0x00b85c, 0xff2a2a, 0x2a6aff, 0xffc020, 0x9a3aff, 0x00b85c].forEach((col, i) => {
+  [0x0f4a30, 0x7a2412, 0x141414, 0xb0701a, 0x0f4a30, 0x7a2412].forEach((col, i) => {
     const f = group(rig.tail, [0, 0, 0]);
     f.rotation.set(-0.6, 0, -0.85 + i * 0.34);
-    mesh(S(0.08), mat(col, { roughness: 0.25, clearcoat: 1 }), f, [0, 0.24, -0.02], [0.45, 2.6, 0.3]);
+    mesh(S(0.08), mat(col, { roughness: 0.3, clearcoat: 0.6, sheen: 0 }), f, [0, 0.24, -0.02], [0.45, 2.6, 0.3]);
   });
   rig.neck = group(torso, [0, 0.14, 0.15]);
   mesh(CAP(0.095, 0.05), white, rig.neck, [0, 0.04, 0], [1, 1, 1], [0.3, 0, 0]);
@@ -195,7 +202,7 @@ export function makeRooster() {
   // huge crown comb
   for (let i = 0; i < 5; i++) mesh(S(0.055), red, head, [0, 0.13 + Math.sin(i / 4 * Math.PI) * 0.06, -0.1 + i * 0.05], [0.5, 1.2, 0.8]);
   rig.beak = group(head, [0, -0.01, 0.12]);
-  mesh(new THREE.ConeGeometry(0.05, 0.13, 24), mat(0xffc400, { roughness: 0.3, clearcoat: 0.8 }), rig.beak, [0, 0, 0.04], [1, 0.7, 1], [Math.PI / 2, 0, 0]);
+  mesh(new THREE.ConeGeometry(0.05, 0.13, 24), mat(0xe0a020, { roughness: 0.4, clearcoat: 0.4 }), rig.beak, [0, 0, 0.04], [1, 0.7, 1], [Math.PI / 2, 0, 0]);
   mesh(S(0.04), red, head, [0, -0.11, 0.08], [0.8, 1.4, 0.7]);
   // big googly eyes sitting on top of the head
   rig.eyes = [-1, 1].map(side => {

@@ -2,5 +2,8 @@
   "name": "naa-idea-3d",
   "private": true,
   "description": "3D cartoon renderer (three.js in headless Chromium)",
-  "dependencies": { "three": "0.169.0" }
+  "dependencies": {
+    "@pmndrs/assets": "^1.7.0",
+    "three": "0.169.0"
+  }
 }
