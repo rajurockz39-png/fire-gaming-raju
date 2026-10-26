@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { makeBujji, makePeddayya, makeKodi, makeBomb } from './cast3d.js';
+const W=1080,H=1920;
+const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+r.setSize(W,H); r.shadowMap.enabled=true; r.shadowMap.type=THREE.PCFSoftShadowMap;
+r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=1.0; document.body.appendChild(r.domElement);
+const s=new THREE.Scene(); s.background=new THREE.Color(0x9fd4f5); s.fog=new THREE.Fog(0x9fd4f5,9,30);
+s.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),0.04).texture; s.environmentIntensity=0.5;
+s.add(new THREE.HemisphereLight(0xcfe8ff,0x8a6a4a,1.2));
+const sun=new THREE.DirectionalLight(0xfff1dd,2.6); sun.position.set(3,6,5); sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048); sun.shadow.radius=6; Object.assign(sun.shadow.camera,{left:-4,right:4,top:4,bottom:-4}); s.add(sun);
+const ground=new THREE.Mesh(new THREE.CircleGeometry(30,64),new THREE.MeshStandardMaterial({color:0xc9a36f,roughness:1}));
+ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; s.add(ground);
+const P=makePeddayya(); P.root.position.set(-0.62,0,-0.2); P.root.rotation.y=0.3; s.add(P.root);
+const B=makeBujji(); B.root.position.set(0.12,0,0.35); B.root.rotation.y=-0.1; s.add(B.root);
+const K=makeKodi(); K.root.position.set(0.68,0,0.7); K.root.rotation.y=-0.35; s.add(K.root);
+const bomb=makeBomb(); bomb.root.position.set(0.32,0,1.0); s.add(bomb.root);
+B.rig.arms[1].rotation.z=-0.5; P.rig.mouthOpen.visible=true; P.rig.smile.visible=false;
+const cam=new THREE.PerspectiveCamera(30,W/H,0.1,100); cam.position.set(0,1.5,9.5); cam.lookAt(0,0.8,0);
+r.render(s,cam); window.done=true;
+</script></body></html>
