@@ -312,6 +312,41 @@ export function endCard(ctx, lt, t) {
     }
 }
 
+// ------------------------------------------------------------------ cinematic FX (optional)
+export const FX = { on: false };
+let bufA = null, bufB = null;
+function offscreen(old) {
+  if (old) return old;
+  const c = document.createElement('canvas'); c.width = W; c.height = H; return c;
+}
+// paint the far layer into a buffer and lay it down blurred (shallow depth of field)
+export function depthOfField(ctx, drawFar, blur) {
+  bufA = offscreen(bufA);
+  const b = bufA.getContext('2d');
+  b.setTransform(1, 0, 0, 1, 0, 0); b.clearRect(0, 0, W, H);
+  drawFar(b);
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.filter = `blur(${blur}px)`;
+  ctx.drawImage(bufA, 0, 0); ctx.restore();
+}
+// bloom (glow around bright areas) + warm cinematic grade + film grain
+export function postFX(ctx, t, warmth = 0.22) {
+  bufB = offscreen(bufB);
+  const b = bufB.getContext('2d');
+  b.setTransform(1, 0, 0, 1, 0, 0); b.clearRect(0, 0, W, H);
+  b.filter = 'blur(28px) brightness(0.9) contrast(1.6)'; b.drawImage(ctx.canvas, 0, 0); b.filter = 'none';
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = 0.32; ctx.drawImage(bufB, 0, 0);
+  ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'soft-light';
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, `rgba(255,190,120,${warmth})`); g.addColorStop(1, `rgba(120,90,160,${warmth * 0.6})`);
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = 'source-over';
+  const R = rand(Math.floor(t * 30));
+  ctx.fillStyle = 'rgba(255,255,255,0.035)';
+  for (let i = 0; i < 1400; i++) ctx.fillRect(R() * W, R() * H, 2, 2);
+  ctx.restore();
+}
+
 // ------------------------------------------------------------------ frame
 export function drawFrame(ctx, t) {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -336,15 +371,19 @@ export function drawFrame(ctx, t) {
   } else if (t < 10) {
     // 2. Chinni on the bank spots a butterfly and hops after it
     const lt = t - 5.5;
+    const far = (c) => {
+      camera(c, 1.12, W / 2, H / 2 + 120);
+      pond(c, t);
+      const wy = 1150;
+      for (let i = 0; i < 3; i++) {
+        const dx = 300 + i * 130 + Math.sin(t * 0.5) * 20;
+        swimmer(c, wy + 4, () => drawDuckling(c, dx, wy + 55 + Math.sin(t * 3 + i) * 4, 0.34, { facing: -1, t, blink: blink(t + i) }));
+        ripple(c, dx, wy + 6, 0.4, t + i);
+      }
+      swimmer(c, wy + 4, () => drawMother(c, 760, wy, 0.75, { swim: true, t, facing: -1 }));
+    };
+    if (FX.on) depthOfField(ctx, far, 6); else far(ctx);
     camera(ctx, 1.12, W / 2, H / 2 + 120);
-    pond(ctx, t);
-    const wy = 1150;
-    for (let i = 0; i < 3; i++) {
-      const dx = 300 + i * 130 + Math.sin(t * 0.5) * 20;
-      swimmer(ctx, wy + 4, () => drawDuckling(ctx, dx, wy + 55 + Math.sin(t * 3 + i) * 4, 0.34, { facing: -1, t, blink: blink(t + i) }));
-      ripple(ctx, dx, wy + 6, 0.4, t + i);
-    }
-    swimmer(ctx, wy + 4, () => drawMother(ctx, 760, wy, 0.75, { swim: true, t, facing: -1 }));
     bank(ctx, t, 1480);
     // butterfly path: enters left, loops, exits right
     const bk = prog(lt, 0.3, 4.5);
@@ -432,6 +471,7 @@ export function drawFrame(ctx, t) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     endCard(ctx, lt, t);
   }
+  if (FX.on) postFX(ctx, t);
   // fade in / out
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   const fade = Math.min(prog(t, 0, 0.5), 1 - prog(t, DURATION - 0.6, DURATION));

@@ -3,7 +3,9 @@
 <script type="module">
 // story.html?ep=duck_story (default) | ep02_rain ...
 const ep = new URLSearchParams(location.search).get('ep') || 'duck_story';
-const { drawFrame, preload, DURATION } = await import(`./${ep}.js`);
+const mod = await import(`./${ep}.js`);
+const { drawFrame, preload, DURATION } = mod;
+if (new URLSearchParams(location.search).get('fx') === '1') (await import('./duck_story.js')).FX.on = true;
 const ctx = document.getElementById('c').getContext('2d');
 await preload();
 window.DURATION = DURATION;
