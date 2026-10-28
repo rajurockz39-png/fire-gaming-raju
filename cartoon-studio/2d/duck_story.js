@@ -2,11 +2,11 @@
 import { drawDuckling, drawMother, drawButterfly, TAU, clamp, lerp } from './cast2d.js';
 
 export const W = 1080, H = 1920, DURATION = 27;
-const prog = (t, a, b) => clamp((t - a) / (b - a));
-const ease = (k) => k * k * (3 - 2 * k);
-const easeOut = (k) => 1 - (1 - k) ** 3;
-const back = (k) => { const c = 1.70158; return 1 + (c + 1) * (k - 1) ** 3 + c * (k - 1) ** 2; };
-function rand(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+export const prog = (t, a, b) => clamp((t - a) / (b - a));
+export const ease = (k) => k * k * (3 - 2 * k);
+export const easeOut = (k) => 1 - (1 - k) ** 3;
+export const back = (k) => { const c = 1.70158; return 1 + (c + 1) * (k - 1) ** 3 + c * (k - 1) ** 2; };
+export function rand(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
 
 let logo = null;
 export async function preload() {
@@ -18,7 +18,7 @@ export async function preload() {
 }
 
 // ------------------------------------------------------------------ shared scenery
-function sunGlow(ctx, x, y, t, strength = 1) {
+export function sunGlow(ctx, x, y, t, strength = 1) {
   ctx.save();
   ctx.globalCompositeOperation = 'lighter';
   for (let i = 0; i < 9; i++) {                      // slowly turning rays
@@ -38,7 +38,7 @@ function sunGlow(ctx, x, y, t, strength = 1) {
   ctx.fillStyle = '#fffbe8'; ctx.beginPath(); ctx.arc(x, y, 62, 0, TAU); ctx.fill();
 }
 
-function treeBlob(ctx, x, y, r, dark, light, seed) {
+export function treeBlob(ctx, x, y, r, dark, light, seed) {
   const R = rand(seed);
   for (let i = 0; i < 7; i++) {
     const a = R() * TAU, d = R() * r * 0.55, rr = r * (0.45 + R() * 0.35);
@@ -49,7 +49,7 @@ function treeBlob(ctx, x, y, r, dark, light, seed) {
   }
 }
 
-function grassEdge(ctx, y0, color, seed, t, h = 60, density = 140) {
+export function grassEdge(ctx, y0, color, seed, t, h = 60, density = 140) {
   const R = rand(seed);
   ctx.strokeStyle = color; ctx.lineCap = 'round';
   for (let i = 0; i < density; i++) {
@@ -60,7 +60,7 @@ function grassEdge(ctx, y0, color, seed, t, h = 60, density = 140) {
   }
 }
 
-function flowers(ctx, y0, y1, seed, n = 18) {
+export function flowers(ctx, y0, y1, seed, n = 18) {
   const R = rand(seed);
   for (let i = 0; i < n; i++) {
     const x = R() * W, y = lerp(y0, y1, R()), s = 0.6 + R() * 0.8;
@@ -71,7 +71,7 @@ function flowers(ctx, y0, y1, seed, n = 18) {
   }
 }
 
-function particles(ctx, t, seed, color = '255,240,190', n = 40) {
+export function particles(ctx, t, seed, color = '255,240,190', n = 40) {
   const R = rand(seed);
   ctx.save(); ctx.globalCompositeOperation = 'lighter';
   for (let i = 0; i < n; i++) {
@@ -84,7 +84,7 @@ function particles(ctx, t, seed, color = '255,240,190', n = 40) {
   ctx.restore();
 }
 
-function heart(ctx, x, y, s, a) {
+export function heart(ctx, x, y, s, a) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.globalAlpha = a;
   const g = ctx.createRadialGradient(-6, -8, 2, 0, 0, 30);
   g.addColorStop(0, '#ff9ab0'); g.addColorStop(1, '#e8264f');
@@ -94,7 +94,7 @@ function heart(ctx, x, y, s, a) {
   ctx.restore();
 }
 
-function sparkle(ctx, x, y, r, a) {
+export function sparkle(ctx, x, y, r, a) {
   ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = a;
   ctx.fillStyle = '#fff6d0';
   ctx.beginPath();
@@ -104,7 +104,7 @@ function sparkle(ctx, x, y, r, a) {
 
 // ------------------------------------------------------------------ pond (scenes 1-2)
 const HORIZON = 860;
-function pond(ctx, t) {
+export function pond(ctx, t) {
   const sky = ctx.createLinearGradient(0, 0, 0, HORIZON);
   sky.addColorStop(0, '#7fb6e8'); sky.addColorStop(0.6, '#ffd6a6'); sky.addColorStop(1, '#ffbf86');
   ctx.fillStyle = sky; ctx.fillRect(0, 0, W, HORIZON + 5);
@@ -164,7 +164,7 @@ function pond(ctx, t) {
   }
 }
 
-function bank(ctx, t, y0 = 1480) {
+export function bank(ctx, t, y0 = 1480) {
   const g = ctx.createLinearGradient(0, y0, 0, H);
   g.addColorStop(0, '#8cc45f'); g.addColorStop(1, '#4e8a36');
   ctx.fillStyle = g;
@@ -173,11 +173,11 @@ function bank(ctx, t, y0 = 1480) {
   flowers(ctx, y0 + 60, H - 60, 4, 22);
 }
 
-function swimmer(ctx, waterY, draw) {
+export function swimmer(ctx, waterY, draw) {
   ctx.save(); ctx.beginPath(); ctx.rect(-5000, -5000, 10000, waterY + 5000); ctx.clip(); draw(); ctx.restore();
 }
 
-function ripple(ctx, x, y, s, t) {
+export function ripple(ctx, x, y, s, t) {
   ctx.strokeStyle = 'rgba(255,255,255,0.55)'; ctx.lineWidth = 3;
   for (let k = 0; k < 2; k++) {
     const p = (t * 0.8 + k * 0.5) % 1;
@@ -188,7 +188,7 @@ function ripple(ctx, x, y, s, t) {
 }
 
 // ------------------------------------------------------------------ forest (scenes 3-5)
-function forest(ctx, t, dim, warm) {
+export function forest(ctx, t, dim, warm) {
   const sky = ctx.createLinearGradient(0, 0, 0, 1100);
   sky.addColorStop(0, '#f7d9a0'); sky.addColorStop(1, '#c9d9a0');
   ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
@@ -260,13 +260,13 @@ function forest(ctx, t, dim, warm) {
   }
 }
 
-function vignette(ctx, k = 0.45) {
+export function vignette(ctx, k = 0.45) {
   const g = ctx.createRadialGradient(W / 2, H / 2, H * 0.3, W / 2, H / 2, H * 0.75);
   g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, `rgba(20,10,0,${k})`);
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 }
 
-function camera(ctx, zoom, fx, fy) {
+export function camera(ctx, zoom, fx, fy) {
   // keep the view inside the painted canvas (no black edges when zoomed)
   fx = clamp(fx, W / (2 * zoom), W - W / (2 * zoom));
   fy = clamp(fy, H / (2 * zoom), H - H / (2 * zoom));
@@ -293,6 +293,23 @@ function titleCard(ctx, t) {
     const a = i / 7 * TAU + t, r = 420 + Math.sin(t * 3 + i) * 20;
     sparkle(ctx, W / 2 + Math.cos(a) * r, 320 + Math.sin(a) * 130, 22, (1 - out) * clamp(k) * (0.5 + 0.5 * Math.sin(t * 6 + i)));
   }
+}
+
+// ------------------------------------------------------------------ end card (logo + subscribe)
+export function endCard(ctx, lt, t) {
+    ctx.fillStyle = `rgba(30,15,5,${0.55 * ease(prog(lt, 0, 0.6))})`; ctx.fillRect(0, 0, W, H);
+    const k = back(prog(lt, 0.2, 0.8));
+    if (k > 0 && logo) { const s = 620 * k; ctx.drawImage(logo, W / 2 - s / 2, 560 - s / 2, s, s); }
+    const k2 = back(prog(lt, 0.8, 1.2));
+    if (k2 > 0) {
+      const pulse = 1 + 0.04 * Math.sin(t * 8);
+      ctx.save(); ctx.translate(W / 2, 1060); ctx.scale(k2 * pulse, k2 * pulse);
+      ctx.fillStyle = '#e8141e'; ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 8;
+      ctx.beginPath(); ctx.roundRect(-300, -70, 600, 140, 70); ctx.fill(); ctx.stroke();
+      ctx.font = '600 76px Fredoka'; ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('SUBSCRIBE', 0, 4);
+      ctx.restore();
+    }
 }
 
 // ------------------------------------------------------------------ frame
@@ -413,19 +430,7 @@ export function drawFrame(ctx, t) {
     drawMother(ctx, 790, 1580, 1.15, { facing: -1, t, wing: 0.9, blink: 1 });
     drawDuckling(ctx, 560, 1590, 0.8, { facing: 1, t, blink: 1, tilt: 0.18, wing: 0.3 });
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle = `rgba(30,15,5,${0.55 * ease(prog(lt, 0, 0.6))})`; ctx.fillRect(0, 0, W, H);
-    const k = back(prog(lt, 0.2, 0.8));
-    if (k > 0 && logo) { const s = 620 * k; ctx.drawImage(logo, W / 2 - s / 2, 560 - s / 2, s, s); }
-    const k2 = back(prog(lt, 0.8, 1.2));
-    if (k2 > 0) {
-      const pulse = 1 + 0.04 * Math.sin(t * 8);
-      ctx.save(); ctx.translate(W / 2, 1060); ctx.scale(k2 * pulse, k2 * pulse);
-      ctx.fillStyle = '#e8141e'; ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 8;
-      ctx.beginPath(); ctx.roundRect(-300, -70, 600, 140, 70); ctx.fill(); ctx.stroke();
-      ctx.font = '600 76px Fredoka'; ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('SUBSCRIBE', 0, 4);
-      ctx.restore();
-    }
+    endCard(ctx, lt, t);
   }
   // fade in / out
   ctx.setTransform(1, 0, 0, 1, 0, 0);

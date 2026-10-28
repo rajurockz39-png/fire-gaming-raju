@@ -338,3 +338,104 @@ export function drawButterfly(ctx, x, y, s, t, rot = 0) {
   ctx.beginPath(); ctx.moveTo(-2, -14); ctx.quadraticCurveTo(-8, -28, -12, -30); ctx.moveTo(2, -14); ctx.quadraticCurveTo(8, -28, 12, -30); ctx.stroke();
   ctx.restore();
 }
+
+// ------------------------------------------------------------------ Frog (front view, sitting)
+export function drawFrog(ctx, x, y, s, o = {}) {
+  const { t = 0, blink = 0, mood = 'happy', hop = 0, squash = 1, look = [0, 0], arm = 0, mouth = 0 } = o;
+  ctx.save();
+  ctx.translate(x, y);
+  softShadow(ctx, 0, 0, 90 * s * (1 - hop * 0.002), 16 * s);
+  ctx.translate(0, -hop);
+  ctx.scale(s / Math.sqrt(squash), s * squash);
+  const OUT = 'rgba(30,80,20,0.9)';
+  const skin = (cx, cy, r) => {
+    const g = ctx.createRadialGradient(cx - r * 0.3, cy - r * 0.4, r * 0.1, cx, cy, r * 1.2);
+    g.addColorStop(0, '#b6f07a'); g.addColorStop(0.6, '#62c23c'); g.addColorStop(1, '#2f8a24');
+    return g;
+  };
+  // back legs (folded)
+  for (const side of [-1, 1]) {
+    ctx.fillStyle = skin(side * 60, -30, 50); ctx.strokeStyle = OUT; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(side * 62, -32, 46, 30, side * 0.3, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#4fae33';
+    ctx.beginPath(); ctx.ellipse(side * 92, -4, 30, 9, 0, 0, TAU); ctx.fill(); ctx.stroke();
+  }
+  // body
+  ctx.fillStyle = skin(0, -70, 80); ctx.strokeStyle = OUT; ctx.lineWidth = 3.5;
+  ctx.beginPath(); ctx.ellipse(0, -68, 74, 64, 0, 0, TAU); ctx.fill(); ctx.stroke();
+  const bg = ctx.createRadialGradient(0, -50, 5, 0, -50, 50);
+  bg.addColorStop(0, '#fbffd8'); bg.addColorStop(1, '#d8f0a0');
+  ctx.fillStyle = bg; ctx.beginPath(); ctx.ellipse(0, -50, 46, 40, 0, 0, TAU); ctx.fill();
+  // spots
+  ctx.fillStyle = 'rgba(40,120,30,0.45)';
+  for (const [sx, sy, r] of [[-50, -95, 9], [52, -88, 7], [-38, -40, 6], [58, -50, 8]]) { ctx.beginPath(); ctx.arc(sx, sy, r, 0, TAU); ctx.fill(); }
+  // front arms (one can wave)
+  for (const side of [-1, 1]) {
+    ctx.save(); ctx.translate(side * 40, -40);
+    ctx.rotate(side * (0.3 + (side > 0 ? arm * 1.8 : 0)));
+    ctx.fillStyle = '#5fbf3a'; ctx.strokeStyle = OUT; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(-9, 0, 18, 44, 9); ctx.fill(); ctx.stroke();
+    for (const f of [-1, 0, 1]) { ctx.beginPath(); ctx.arc(f * 8, 46, 6, 0, TAU); ctx.fill(); }
+    ctx.restore();
+  }
+  // head
+  ctx.fillStyle = skin(0, -140, 80); ctx.strokeStyle = OUT; ctx.lineWidth = 3.5;
+  ctx.beginPath(); ctx.ellipse(0, -138, 70, 46, 0, 0, TAU); ctx.fill(); ctx.stroke();
+  // eye bumps + eyes on top
+  for (const side of [-1, 1]) {
+    ctx.fillStyle = skin(side * 36, -180, 34);
+    ctx.beginPath(); ctx.arc(side * 36, -178, 32, 0, TAU); ctx.fill(); ctx.stroke();
+    bigEye(ctx, side * 36, -180, 23, ['#fff3a0', '#b07a10', '#5a3a05'], look, blink, mood, 1);
+  }
+  // cheeks + big smile
+  for (const side of [-1, 1]) {
+    const cg = ctx.createRadialGradient(side * 44, -122, 2, side * 44, -122, 16);
+    cg.addColorStop(0, 'rgba(255,130,120,0.6)'); cg.addColorStop(1, 'rgba(255,130,120,0)');
+    ctx.fillStyle = cg; ctx.beginPath(); ctx.arc(side * 44, -122, 16, 0, TAU); ctx.fill();
+  }
+  ctx.strokeStyle = '#1f5a14'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+  if (mouth > 0.05) {
+    ctx.fillStyle = '#a8303a';
+    ctx.beginPath(); ctx.ellipse(0, -122, 30, 6 + mouth * 14, 0, 0, Math.PI); ctx.fill(); ctx.stroke();
+  } else if (mood === 'surprised') {
+    ctx.beginPath(); ctx.ellipse(0, -118, 8, 10, 0, 0, TAU); ctx.stroke();
+  } else {
+    ctx.beginPath(); ctx.arc(0, -150, 38, 0.25 * Math.PI, 0.75 * Math.PI); ctx.stroke();
+  }
+  ctx.fillStyle = '#1f5a14';
+  ctx.beginPath(); ctx.arc(-8, -148, 2.5, 0, TAU); ctx.arc(8, -148, 2.5, 0, TAU); ctx.fill();
+  ctx.restore();
+}
+
+// Big elephant-ear (taro) leaf used as an umbrella. (x, y) = base of the stem.
+export function drawBigLeaf(ctx, x, y, s, t = 0, shake = 0) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  const wob = Math.sin(t * 20) * shake * 0.03;
+  // stem
+  ctx.strokeStyle = '#4c8a2a'; ctx.lineWidth = 22; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.quadraticCurveTo(-20, -220, 10, -400); ctx.stroke();
+  ctx.translate(10, -400); ctx.rotate(-0.12 + wob);
+  const g = ctx.createRadialGradient(-60, -40, 20, 0, 40, 420);
+  g.addColorStop(0, '#9ad860'); g.addColorStop(0.6, '#4f9e34'); g.addColorStop(1, '#2c6a22');
+  ctx.fillStyle = g; ctx.strokeStyle = 'rgba(25,70,15,0.9)'; ctx.lineWidth = 5;
+  // umbrella-shaped heart leaf, drooping edges
+  ctx.beginPath();
+  ctx.moveTo(-400, 120);
+  ctx.bezierCurveTo(-420, -40, -200, -150, 0, -140);
+  ctx.bezierCurveTo(200, -150, 420, -40, 400, 120);
+  ctx.bezierCurveTo(300, 60, 150, 40, 0, 50);
+  ctx.bezierCurveTo(-150, 40, -300, 60, -400, 120);
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+  // veins
+  ctx.strokeStyle = 'rgba(210,245,170,0.6)'; ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.moveTo(0, -130); ctx.lineTo(0, 45); ctx.stroke();
+  ctx.lineWidth = 4;
+  for (const side of [-1, 1]) for (let k = 0; k < 5; k++) {
+    const sy = -110 + k * 32;
+    ctx.beginPath(); ctx.moveTo(0, sy); ctx.quadraticCurveTo(side * 160, sy - 30 + k * 6, side * (340 - k * 25), sy + 60 + k * 18); ctx.stroke();
+  }
+  // shiny highlight
+  ctx.fillStyle = 'rgba(255,255,255,0.18)';
+  ctx.beginPath(); ctx.ellipse(-150, -70, 120, 30, -0.2, 0, TAU); ctx.fill();
+  ctx.restore();
+}

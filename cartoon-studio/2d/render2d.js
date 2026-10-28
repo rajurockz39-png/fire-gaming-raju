@@ -1,5 +1,5 @@
 // Render a 2D canvas episode to frames.
-//   node render2d.js story.html stills out_dir 1.5 7 12      -> PNG stills at those times
+//   node render2d.js 'story.html?ep=ep02_rain' stills out_dir 1.5 7 12  -> PNG stills at those times
 //   node render2d.js story.html video audio.wav out.mp4      -> full MP4 (30 fps) with audio
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
@@ -11,7 +11,8 @@ const fs = require('fs');
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   page.on('pageerror', e => console.log('pageerror', e.message));
   page.on('console', m => { if (m.type() === 'error') console.log('console', m.text()); });
-  await page.goto('file://' + path.resolve(page_));
+  const [file, query = ''] = page_.split('?');
+  await page.goto('file://' + path.resolve(file) + (query ? '?' + query : ''));
   await page.waitForFunction('window.ready === true', null, { timeout: 60000 });
   const canvas = await page.$('canvas');
   if (mode === 'stills') {
