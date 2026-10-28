@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+import { drawDuckling, drawMother, drawButterfly } from './cast2d.js';
+const c=document.getElementById('c'), ctx=c.getContext('2d');
+const g=ctx.createLinearGradient(0,0,0,1920); g.addColorStop(0,'#ffe2b0'); g.addColorStop(0.6,'#cfe6b0'); g.addColorStop(1,'#7fae5a');
+ctx.fillStyle=g; ctx.fillRect(0,0,1080,1920);
+drawMother(ctx, 380, 760, 1.0, {t:0.5});
+drawButterfly(ctx, 860, 520, 1.0, 0.03, 0.3);
+drawDuckling(ctx, 300, 1400, 1.25, {facing:1, mood:'happy', look:[0.4,0.1], t:0.3});
+drawDuckling(ctx, 800, 1400, 1.25, {facing:-1, mood:'sad', look:[-0.2,0.4], tear:0.5, t:0.3});
+drawDuckling(ctx, 540, 1800, 0.8, {facing:1, mood:'surprised', look:[0,-0.3], mouth:0.8, wing:0.8, t:0.3});
+window.done=true;
+</script></body></html>
