@@ -1,4 +1,4 @@
-// Storytime Short #1 – "అమ్మ చెప్పు" (Amma's chappal). Flat 2D, Telugu captions.
+// Storytime Short #1 – "Mom's Slipper" (Amma's chappal). Flat 2D, English captions.
 // Narration (owner's voice) can be laid over later; captions carry the story for now.
 import { drawRaju, drawPilli, drawAmma, drawChappal, drawLaddu, TAU } from './storytime_cast.js';
 import { endCard, preload as basePreload } from './duck_story.js';
@@ -166,7 +166,7 @@ export function drawFrame(ctx, t) {
     burstBg(ctx, '#ffcf3f', '#ffdd6e', t);
     drawRaju(ctx, 540, 1250, 1.4, { expr: 'think', armR: 1.1, t, look: Math.sin(t * 2) });
     bigMark(ctx, '?', 830, 520, prog(t, 0.8, 1.2), '#ffffff');
-    caption(ctx, 'ప్రపంచంలో అత్యంత వేగవంతమైన ఆయుధం ఏంటో తెలుసా?', prog(t, 0.2, 0.6), 330, 72);
+    caption(ctx, 'What is the FASTEST weapon in the world?', prog(t, 0.2, 0.6), 330, 72);
   } else if (t < 8) {                                  // 2. not a missile, not a bullet
     const lt = t - 4;
     burstBg(ctx, '#7ec8ff', '#9ad6ff', t);
@@ -175,7 +175,7 @@ export function drawFrame(ctx, t) {
     bullet(ctx, 780, 650, back(prog(lt, 1.6, 2.0)) * 1.2);
     redX(ctx, 780, 650, prog(lt, 2.2, 2.5));
     drawRaju(ctx, 540, 1350, 1.1, { expr: 'smug', t, look: Math.sin(lt * 9) > 0 ? 1 : -1 });
-    caption(ctx, lt < 1.6 ? 'మిసైల్ కాదు...' : 'బుల్లెట్ కాదు...', 1, 330, 80);
+    caption(ctx, lt < 1.6 ? 'Not a missile...' : 'Not a bullet...', 1, 330, 80);
   } else if (t < 10.5) {                               // 3. AMMA'S CHAPPAL!
     const lt = t - 8;
     const k = ease(prog(lt, 0, 0.6));
@@ -187,7 +187,7 @@ export function drawFrame(ctx, t) {
     camera(ctx, 1, 540, 960, shake, t);
     drawChappal(ctx, 540, 860, lerp(0.3, 3.2, k), lerp(-6, 0.25, k));
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    caption(ctx, 'అమ్మ చెప్పు!', prog(lt, 0.6, 0.9), 1450, 140, '#ff3b30');
+    caption(ctx, "MOM'S SLIPPER!", prog(lt, 0.6, 0.9), 1450, 120, '#ff3b30');
   } else if (t < 15.5) {                               // 4. the laddu heist
     const lt = t - 10.5;
     kitchen(ctx);
@@ -200,7 +200,7 @@ export function drawFrame(ctx, t) {
     if (lt > 2.6) drawLaddu(ctx, rx + 120, 1420 - 340, 1.1);
     drawPilli(ctx, 930, 1500, 0.9, { expr: lt > 2.8 ? 'shocked' : 'happy', t });
     if (lt > 2.8) bigMark(ctx, '!', 930, 1170, prog(lt, 2.8, 3.1), '#ff3b30');
-    caption(ctx, 'నేను వంటింట్లో ఉన్న లడ్డూ దొంగతనం చేశాను.', prog(lt, 0.2, 0.6), 330, 66);
+    caption(ctx, 'I stole a laddu from the kitchen...', prog(lt, 0.2, 0.6), 330, 66);
   } else if (t < 29.5) {                               // 5-7. the throw (one continuous wide shot)
     const lt = t - 15.5;
     // camera: wide -> aim close-up -> follow the chappal -> impact on Raju
@@ -274,10 +274,10 @@ export function drawFrame(ctx, t) {
       ctx.font = '600 40px Fredoka'; ctx.fillStyle = INK; ctx.fillText('SLOW MOTION', 860, 300);
     }
     // captions
-    if (lt < 4.2) caption(ctx, 'అమ్మ హాల్లో... నేను గేటు దగ్గర. దూరం 20 మీటర్లు!', prog(lt, 0.3, 0.7), 330, 64);
-    else if (lt < 6.1) caption(ctx, 'అమ్మ చెప్పు తీసింది... గురి చూసింది...', prog(lt, 4.2, 4.6), 330, 66);
-    else if (lt < 7.9) caption(ctx, 'ఒక్క సెకన్ కూడా పట్టలేదు.', prog(lt, 6.1, 6.4), 1500, 66);
-    else caption(ctx, 'అమ్మ దగ్గర GPS లేదు... కానీ మిస్ అయ్యే ఛాన్సే లేదు!', prog(lt, 10.0, 10.4), 330, 64, '#ffe14a');
+    if (lt < 4.2) caption(ctx, 'Mom in the hall... me at the gate. 20 meters away!', prog(lt, 0.3, 0.7), 330, 64);
+    else if (lt < 6.1) caption(ctx, 'Mom took off her slipper... and aimed...', prog(lt, 4.2, 4.6), 330, 66);
+    else if (lt < 7.9) caption(ctx, 'It took less than ONE second.', prog(lt, 6.1, 6.4), 1500, 66);
+    else caption(ctx, 'Mom has no GPS... but she NEVER misses!', prog(lt, 10.0, 10.4), 330, 64, '#ffe14a');
   } else {                                             // 8. end card
     burstBg(ctx, '#ffcf3f', '#ffdd6e', t);
     drawRaju(ctx, 380, 1500, 0.9, { expr: 'laugh', armR: 1.6, t });
