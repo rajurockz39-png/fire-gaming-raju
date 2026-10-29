@@ -110,3 +110,64 @@ export function drawPilli(ctx, x, y, s, o = {}) {
   for (const sd of [-1, 1]) for (const k of [-1, 1]) { ctx.beginPath(); ctx.moveTo(sd * 40, hy + 14 + k * 6); ctx.lineTo(sd * 80, hy + 8 + k * 14); ctx.stroke(); }
   ctx.restore();
 }
+
+// Amma: saree, bun, bindi. expr: calm | angry | aim. armR raises the throwing arm (0..1.6).
+export function drawAmma(ctx, x, y, s, o = {}) {
+  const { expr = 'calm', armL = 0, armR = 0, hold = false, t = 0 } = o;
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  const skin = '#b97a50', saree = '#1f9d6b', border = '#e8417a';
+  // feet
+  for (const sd of [-1, 1]) blob(ctx, skin, () => ctx.ellipse(sd * 26, -8, 24, 11, 0, 0, TAU));
+  // arms
+  const arm = (sd, ang, withChappal) => {
+    ctx.save(); ctx.translate(sd * 56, -196); ctx.rotate(sd * (0.2 - ang));
+    blob(ctx, skin, () => ctx.roundRect(-13, 0, 26, 84, 13));
+    for (let k = 0; k < 3; k++) { ctx.fillStyle = ['#ffd23f', '#e8417a', '#2f80ed'][k]; ctx.fillRect(-14, 56 + k * 8, 28, 5); }
+    if (withChappal) { ctx.translate(0, 96); ctx.rotate(-0.4); drawChappal(ctx, 0, 0, 0.8); }
+    else blob(ctx, skin, () => ctx.arc(0, 90, 14, 0, TAU));
+    ctx.restore();
+  };
+  arm(-1, armL, false);
+  // saree body (A-line) + pallu over the shoulder
+  blob(ctx, saree, () => { ctx.moveTo(-58, -225); ctx.lineTo(58, -225); ctx.lineTo(82, -18); ctx.lineTo(-82, -18); ctx.closePath(); });
+  ctx.fillStyle = border; ctx.fillRect(-80, -42, 160, 18);
+  blob(ctx, border, () => { ctx.moveTo(-58, -225); ctx.lineTo(-20, -225); ctx.lineTo(60, -40); ctx.lineTo(28, -40); ctx.closePath(); });
+  arm(1, armR, hold);
+  // head
+  const hy = -300;
+  blob(ctx, '#1b1414', () => ctx.arc(0, hy - 64, 34, 0, TAU));                 // bun
+  blob(ctx, skin, () => ctx.ellipse(0, hy, 74, 76, 0, 0, TAU));
+  blob(ctx, '#1b1414', () => { ctx.ellipse(0, hy - 34, 76, 46, 0, Math.PI, TAU); });   // hair
+  ctx.fillStyle = '#d61f3c'; ctx.beginPath(); ctx.arc(0, hy - 18, 7, 0, TAU); ctx.fill(); // bindi
+  for (const sd of [-1, 1]) { ctx.fillStyle = '#ffd23f'; ctx.beginPath(); ctx.arc(sd * 74, hy + 22, 8, 0, TAU); ctx.fill(); }
+  for (const sd of [-1, 1]) {
+    const cx = sd * 28, cy = hy + 6;
+    if (expr === 'aim' && sd > 0) { ctx.strokeStyle = INK; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(cx - 14, cy); ctx.lineTo(cx + 14, cy); ctx.stroke(); continue; }
+    blob(ctx, '#fff', () => ctx.arc(cx, cy, 14, 0, TAU));
+    ctx.fillStyle = INK; ctx.beginPath(); ctx.arc(cx + 2, cy + 2, 7, 0, TAU); ctx.fill();
+    if (expr !== 'calm') { ctx.strokeStyle = INK; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(cx - 18 * sd, cy - 30); ctx.lineTo(cx + 14 * sd, cy - 18); ctx.stroke(); }
+  }
+  ctx.strokeStyle = INK; ctx.lineWidth = 6;
+  ctx.beginPath();
+  if (expr === 'calm') ctx.arc(0, hy + 30, 16, 0.2 * Math.PI, 0.8 * Math.PI);
+  else { ctx.moveTo(-18, hy + 46); ctx.quadraticCurveTo(0, hy + 34, 18, hy + 46); }
+  ctx.stroke();
+  ctx.restore();
+}
+
+export function drawChappal(ctx, x, y, s, rot = 0) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(s, s);
+  blob(ctx, '#8a5a2b', () => ctx.ellipse(0, 0, 28, 62, 0, 0, TAU));
+  blob(ctx, '#c98a4b', () => ctx.ellipse(0, -4, 20, 52, 0, 0, TAU));
+  ctx.strokeStyle = '#2f80ed'; ctx.lineWidth = 9; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(-22, 0); ctx.lineTo(0, -30); ctx.lineTo(22, 0); ctx.stroke();
+  ctx.restore();
+}
+
+export function drawLaddu(ctx, x, y, s) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  blob(ctx, '#ffad1f', () => ctx.arc(0, 0, 34, 0, TAU));
+  ctx.fillStyle = '#e8820c';
+  for (let i = 0; i < 14; i++) { const a = i * 2.4, r = 8 + (i % 4) * 6; ctx.beginPath(); ctx.arc(Math.cos(a) * r, Math.sin(a) * r, 3.5, 0, TAU); ctx.fill(); }
+  ctx.restore();
+}
