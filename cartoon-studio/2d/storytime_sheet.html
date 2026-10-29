@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+import { drawRaju, drawPilli } from './storytime_cast.js';
+const ctx = document.getElementById('c').getContext('2d');
+const f = new FontFace('Fredoka', 'url(../3d/fonts/Fredoka.woff2)', { weight: '600' }); document.fonts.add(await f.load());
+ctx.fillStyle = '#fff6e0'; ctx.fillRect(0, 0, 1080, 1920);
+const cells = [['happy', 0, 0], ['shocked', 1.2, 1.2], ['cry', 0, 0], ['angry', 0.4, 0.4], ['laugh', 0.2, 2.4], ['think', 0, 1.6]];
+cells.forEach(([e, l, r], i) => {
+  const x = 190 + (i % 3) * 350, y = 560 + Math.floor(i / 3) * 620;
+  drawRaju(ctx, x, y, 0.95, { expr: e, armL: l, armR: r, t: 0.3 });
+  ctx.font = '600 44px Fredoka'; ctx.fillStyle = '#333'; ctx.textAlign = 'center'; ctx.fillText(e, x, y + 60);
+});
+drawPilli(ctx, 300, 1800, 1.1, { expr: 'happy', t: 0.3 });
+drawPilli(ctx, 760, 1800, 1.1, { expr: 'shocked', t: 0.8 });
+ctx.font = '600 70px Fredoka'; ctx.fillStyle = '#e3342f'; ctx.textAlign = 'center'; ctx.fillText('Raju & Pilli', 540, 110);
+window.render = () => {}; window.ready = true;
+</script></body></html>
