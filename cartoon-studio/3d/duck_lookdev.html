@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { makeDuckling, makeMotherDuck, makeButterfly } from './duck3d.js';
+const t0=performance.now();
+const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); r.setSize(1080,1920);
+r.shadowMap.enabled=true; r.shadowMap.type=THREE.PCFSoftShadowMap; r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=1.0;
+document.body.appendChild(r.domElement);
+const s=new THREE.Scene(); s.background=new THREE.Color(0x8a6a40);
+s.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),0.04).texture; s.environmentIntensity=0.35;
+s.add(new THREE.HemisphereLight(0xffe0b0,0x4a3a20,0.8));
+const sun=new THREE.DirectionalLight(0xffc070,4); sun.position.set(-2,2,-3); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); s.add(sun);
+const fill=new THREE.DirectionalLight(0xfff0e0,1.2); fill.position.set(2,2,4); s.add(fill);
+const g=new THREE.Mesh(new THREE.CircleGeometry(10,64),new THREE.MeshStandardMaterial({color:0x6a5030})); g.rotation.x=-Math.PI/2; g.receiveShadow=true; s.add(g);
+const d=makeDuckling(); d.root.position.set(0.15,0,0.6); d.root.rotation.y=-0.25; s.add(d.root);
+const m=makeMotherDuck(); m.root.position.set(-0.45,0,-0.3); m.root.rotation.y=0.5; s.add(m.root);
+const b=makeButterfly(); b.root.position.set(0.45,0.75,0.5); b.root.rotation.set(0.4,0.6,0); b.rig.wings[0].rotation.z=0.5; b.rig.wings[1].rotation.z=-0.5; s.add(b.root);
+// sad face test
+const mode=new URLSearchParams(location.search).get('mode')||'happy';
+if(mode==='sad'){ d.rig.eyes.forEach(e=>{e.lid.scale.y=0.35; e.tearLine.visible=true; e.look.rotation.x=0.15;}); d.rig.brows.forEach((b,i)=>b.rotation.z=(i?1:-1)*-0.45); d.rig.tear.visible=true; }
+const cam=new THREE.PerspectiveCamera(30,1080/1920,0.05,100); cam.position.set(0.1,0.7,3.8); cam.lookAt(-0.05,0.4,0);
+if(mode==='sad'){cam.position.set(0.2,0.5,1.35); cam.lookAt(0.12,0.45,0.6);}
+r.render(s,cam); window.done=true; console.log('ms',performance.now()-t0);
+</script></body></html>

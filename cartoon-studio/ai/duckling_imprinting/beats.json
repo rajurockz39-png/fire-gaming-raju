@@ -1,0 +1,91 @@
+{
+  "project_name": "duckling_imprinting",
+  "topic": "Why does a duckling think the first thing it sees is its mother?",
+  "aspect_ratio": "9:16",
+  "style_preset": "zackd_3d_stylized",
+  "narrator_voice": "cloned_user_voice",
+  "language": "te",
+  "character_sheets_required": ["chinni_duckling_turnaround", "mother_duck_turnaround", "village_boy_turnaround"],
+  "characters": {
+    "chinni_duckling_turnaround": "a tiny fluffy yellow duckling with soft downy feathers, a small messy tuft of fluff on top of its head, big round glossy sky-blue eyes, a small rounded orange bill, orange webbed feet",
+    "mother_duck_turnaround": "a gentle brown mother duck with mottled brown feathers, kind dark eyes, an orange bill and a small blue wing patch",
+    "village_boy_turnaround": "a cheerful 10-year-old Indian village boy with messy black hair, a red hoodie, dark shorts and red sneakers"
+  },
+  "beats": [
+    {
+      "beat_id": "beat_1",
+      "narration": "ఒక బాతుపిల్ల గుడ్డు నుంచి బయటకు రాగానే... మొదట ఏది కనిపిస్తే, దాన్నే అమ్మ అనుకుంటుంది. తెలుసా?",
+      "title_en": "The First Look",
+      "title_te": "మొదటి చూపు",
+      "hook": true,
+      "shots": [
+        {"shot_id": "beat_1_a", "type": "macro", "duration_sec": 3.0,
+         "scene_description": "Extreme macro of a cracking duck egg in a straw nest, a tiny fluffy yellow beak pushing through the shell, golden morning light, shell fragments flying.",
+         "camera_move": "push_in", "character_refs": ["chinni_duckling_turnaround"], "zoom_impact": true},
+        {"shot_id": "beat_1_b", "type": "close_up", "duration_sec": 3.0,
+         "scene_description": "The newborn duckling Chinni opens its big blue eyes for the very first time, reflection of a blurry figure in its eyes.",
+         "camera_move": "static", "character_refs": ["chinni_duckling_turnaround"], "zoom_impact": false}
+      ]
+    },
+    {
+      "beat_id": "beat_2",
+      "narration": "దీన్ని ఇంప్రింటింగ్ అంటారు. పుట్టిన మొదటి కొన్ని గంటల్లోనే... ఆ రూపం దాని మెదడులో ముద్ర పడిపోతుంది.",
+      "title_en": "Imprinting",
+      "title_te": "ఇంప్రింటింగ్",
+      "hook": false,
+      "shots": [
+        {"shot_id": "beat_2_a", "type": "macro_cross_section", "duration_sec": 3.0,
+         "scene_description": "Stylized 3D cross-section of the duckling's tiny brain, glowing neural pathways lighting up as the image of its mother is stamped in like a golden seal.",
+         "camera_move": "pull_out", "character_refs": ["chinni_duckling_turnaround"], "zoom_impact": true},
+        {"shot_id": "beat_2_b", "type": "wide", "duration_sec": 3.0,
+         "scene_description": "Chinni wobbling after the mother duck on a sunny pond bank, stepping exactly in her footprints.",
+         "camera_move": "pan_right", "character_refs": ["chinni_duckling_turnaround", "mother_duck_turnaround"], "zoom_impact": false}
+      ]
+    },
+    {
+      "beat_id": "beat_3",
+      "narration": "కానీ అమ్మకు బదులు... ఒక పిల్లాడు కనిపిస్తే? ఆ బాతుపిల్ల ఆ పిల్లాడినే అమ్మ అనుకుని, ఎక్కడికెళ్ళినా వెనకాలే వస్తుంది!",
+      "title_en": "Wrong Mother!",
+      "title_te": "తప్పు అమ్మ!",
+      "hook": false,
+      "shots": [
+        {"shot_id": "beat_3_a", "type": "close_up", "duration_sec": 3.0,
+         "scene_description": "A surprised village boy in a red hoodie looks down at a just-hatched duckling staring up at him with adoring eyes.",
+         "camera_move": "tilt_down", "character_refs": ["village_boy_turnaround", "chinni_duckling_turnaround"], "zoom_impact": true},
+        {"shot_id": "beat_3_b", "type": "wide", "duration_sec": 3.0,
+         "scene_description": "The boy walks through a village lane and a line of fluffy ducklings waddles right behind him, he turns back laughing.",
+         "camera_move": "push_in", "character_refs": ["village_boy_turnaround", "chinni_duckling_turnaround"], "zoom_impact": false}
+      ]
+    },
+    {
+      "beat_id": "beat_4",
+      "narration": "నిజంగానే, కొన్‌రాడ్ లోరెంజ్ అనే శాస్త్రవేత్త వెనకాల... గూస్ పిల్లలు ఆయన్నే అమ్మ అనుకుని వరుసగా నడిచాయి.",
+      "title_en": "The Scientist's Ducklings",
+      "title_te": "శాస్త్రవేత్త పిల్లలు",
+      "hook": false,
+      "shots": [
+        {"shot_id": "beat_4_a", "type": "wide", "duration_sec": 3.0,
+         "scene_description": "Stylized 3D old bearded scientist walking through a green meadow in the 1930s, a long line of fluffy grey goslings following him in single file.",
+         "camera_move": "pan_right", "character_refs": [], "zoom_impact": false},
+        {"shot_id": "beat_4_b", "type": "close_up", "duration_sec": 3.0,
+         "scene_description": "The goslings swim in a line behind the scientist who is wading in a lake, warm afternoon light.",
+         "camera_move": "pull_out", "character_refs": [], "zoom_impact": true}
+      ]
+    },
+    {
+      "beat_id": "beat_5",
+      "narration": "అందుకే బాతుపిల్లలు ఎప్పుడూ వరుసగా అమ్మ వెనకాలే వెళ్తాయి. ఆ మొదటి చూపే... వాటికి ప్రపంచం! ఇలాంటి మరిన్ని కథల కోసం నా ఐడియా సబ్‌స్క్రైబ్ చేయండి!",
+      "title_en": "Mom Is My World",
+      "title_te": "అమ్మే ప్రపంచం",
+      "hook": false,
+      "shots": [
+        {"shot_id": "beat_5_a", "type": "wide", "duration_sec": 3.0,
+         "scene_description": "Mother duck swimming across a golden sunset pond with five ducklings in a perfect line behind her, Chinni last.",
+         "camera_move": "pull_out", "character_refs": ["mother_duck_turnaround", "chinni_duckling_turnaround"], "zoom_impact": false},
+        {"shot_id": "beat_5_b", "type": "close_up", "duration_sec": 3.0,
+         "scene_description": "Chinni snuggled under the mother duck's wing, eyes closing happily, sparkles of sunset light.",
+         "camera_move": "push_in", "character_refs": ["chinni_duckling_turnaround", "mother_duck_turnaround"], "zoom_impact": true}
+      ]
+    }
+  ]
+}

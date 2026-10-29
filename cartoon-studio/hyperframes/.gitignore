@@ -1,0 +1,4 @@
+renders/
+.hyperframes/
+*.mp4
+!mom_slipper_final.mp4

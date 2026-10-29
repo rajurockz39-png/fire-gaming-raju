@@ -1,0 +1,165 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+// Naa Idea 3D logo intro (6.5 s): particle vortex -> flash -> logo spins in with a
+// gold ring, god rays and a light sweep -> subtitle -> fade. window.render(t) draws frame t.
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const W = 1080, H = 1920, DURATION = 6.5;
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const ease = (k) => k * k * (3 - 2 * k);
+const back = (k) => { const c = 2.2; return 1 + (c + 1) * (k - 1) ** 3 + c * (k - 1) ** 2; };
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x05030f);
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+const camera = new THREE.PerspectiveCamera(40, W / H, 0.1, 100);
+
+// glow sprite texture
+function glowTex(inner = 'rgba(255,255,255,1)', outer = 'rgba(255,255,255,0)') {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const g = c.getContext('2d'), gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  gr.addColorStop(0, inner); gr.addColorStop(0.25, 'rgba(255,255,255,0.6)'); gr.addColorStop(1, outer);
+  g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+  return new THREE.CanvasTexture(c);
+}
+
+// ---- particles (vortex that collapses into the logo, then orbits)
+const N = 2600;
+const pGeo = new THREE.BufferGeometry();
+const pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+const seed = [];
+let s = 12345; const rnd = () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296);
+for (let i = 0; i < N; i++) {
+  // three-armed spiral galaxy facing the camera
+  const r0 = 0.35 + Math.pow(rnd(), 0.7) * 3.4, arm = i % 3;
+  seed.push({ r: r0, a: arm * Math.PI * 2 / 3 + r0 * 1.1 + (rnd() - 0.5) * 0.55, z: (rnd() - 0.5) * 0.5,
+              sp: 0.6 + rnd() * 0.8, orbit: 1.25 + rnd() * 0.9, oa: rnd() * Math.PI * 2 });
+  const c = new THREE.Color().setHSL([0.08, 0.13, 0.55, 0.85][Math.floor(rnd() * 4)], 1, 0.55);
+  col.set([c.r, c.g, c.b], i * 3);
+}
+pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+pGeo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+const pMat = new THREE.PointsMaterial({ size: 0.06, map: glowTex(), vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+const points = new THREE.Points(pGeo, pMat);
+scene.add(points);
+
+// ---- logo card + gold ring + glow disc + god rays
+const logoTex = await new THREE.TextureLoader().loadAsync('../branding/naa_idea_logo.png');
+logoTex.colorSpace = THREE.SRGBColorSpace; logoTex.anisotropy = 8;
+const logoGroup = new THREE.Group(); scene.add(logoGroup);
+const logo = new THREE.Mesh(new THREE.PlaneGeometry(2.3, 2.3),
+  new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, side: THREE.DoubleSide, toneMapped: false }));
+logoGroup.add(logo);
+const ring = new THREE.Mesh(new THREE.TorusGeometry(1.06, 0.06, 32, 128),
+  new THREE.MeshStandardMaterial({ color: 0xffc23a, metalness: 1, roughness: 0.22, emissive: 0x442200 }));
+ring.position.set(-0.05, 0.06, -0.02); logoGroup.add(ring);
+const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex('rgba(255,190,90,1)'), color: 0xffb050, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+halo.scale.set(6, 6, 1); halo.position.z = -0.3; logoGroup.add(halo);
+// god rays: a plane with radial wedges, rotating slowly behind the logo
+const rc = document.createElement('canvas'); rc.width = rc.height = 512;
+const rg = rc.getContext('2d');
+for (let i = 0; i < 18; i++) {
+  const a = i / 18 * Math.PI * 2;
+  const gr = rg.createRadialGradient(256, 256, 30, 256, 256, 256);
+  gr.addColorStop(0, 'rgba(255,210,140,0.35)'); gr.addColorStop(1, 'rgba(255,210,140,0)');
+  rg.fillStyle = gr; rg.beginPath(); rg.moveTo(256, 256);
+  rg.arc(256, 256, 256, a - 0.07, a + 0.07); rg.fill();
+}
+const rays = new THREE.Mesh(new THREE.PlaneGeometry(9, 9), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(rc), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+rays.position.z = -0.6; logoGroup.add(rays);
+// light sweep: a thin bright bar that slides across the logo (masked by the logo's alpha)
+const sweepMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, alphaMap: logoTex, depthWrite: false });
+const sweep = new THREE.Mesh(new THREE.PlaneGeometry(2.3, 2.3), sweepMat);
+sweep.position.z = 0.01; logoGroup.add(sweep);
+const bar = document.createElement('canvas'); bar.width = 256; bar.height = 4;
+const bg = bar.getContext('2d'), bgr = bg.createLinearGradient(0, 0, 256, 0);
+bgr.addColorStop(0.4, 'rgba(0,0,0,1)'); bgr.addColorStop(0.5, 'rgba(255,255,255,1)'); bgr.addColorStop(0.6, 'rgba(0,0,0,1)');
+bg.fillStyle = bgr; bg.fillRect(0, 0, 256, 4);
+const barTex = new THREE.CanvasTexture(bar); barTex.wrapS = THREE.ClampToEdgeWrapping;
+sweepMat.map = barTex;
+
+// subtitle as a canvas texture (Fredoka font)
+const f = new FontFace('Fredoka', 'url(./fonts/Fredoka.woff2)', { weight: '600' });
+document.fonts.add(await f.load());
+const tc = document.createElement('canvas'); tc.width = 1024; tc.height = 200;
+const tg = tc.getContext('2d');
+tg.font = '600 76px Fredoka'; tg.textAlign = 'center'; tg.textBaseline = 'middle';
+tg.shadowColor = '#ff8a00'; tg.shadowBlur = 24; tg.fillStyle = '#ffe9a8';
+tg.fillText('Cartoon • Animation • Fun', 512, 100);
+const sub = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.53), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(tc), transparent: true, depthWrite: false, toneMapped: false }));
+sub.position.set(0, -1.85, 0.2); scene.add(sub);
+
+// flash
+const coreTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d');
+  const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.08, 'rgba(255,240,200,0.9)'); gr.addColorStop(0.3, 'rgba(255,190,90,0.3)'); gr.addColorStop(1, 'rgba(255,160,60,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })();
+const flash = new THREE.Sprite(new THREE.SpriteMaterial({ map: coreTex, color: 0xffd890, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+flash.scale.set(5, 5, 1); flash.position.z = 0.5; scene.add(flash);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(W, H), 0.55, 0.45, 0.72);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+window.DURATION = DURATION;
+window.render = (t) => {
+  const collapse = ease(prog(t, 0.2, 1.7));          // vortex pulls in
+  const burst = prog(t, 1.7, 2.6);                     // after the flash particles orbit
+  for (let i = 0; i < N; i++) {
+    const p = seed[i];
+    let r, a, y;
+    let z;
+    if (t < 1.7) {
+      r = p.r * (1 - collapse) + 0.03; a = p.a + t * (1.4 / (0.4 + p.r)) * (1 + collapse * 8); z = p.z * (1 - collapse);
+      pos[i * 3] = Math.cos(a) * r; pos[i * 3 + 1] = Math.sin(a) * r * 0.9; pos[i * 3 + 2] = z;
+    } else {                                    // burst out into a slow halo around the logo
+      r = p.orbit * ease(burst) + 0.03; a = p.oa + t * p.sp * 0.35;
+      pos[i * 3] = Math.cos(a) * r; pos[i * 3 + 1] = Math.sin(a) * r + 0.35; pos[i * 3 + 2] = Math.sin(a * 2 + i) * 0.4 - 0.5;
+    }
+  }
+  pGeo.attributes.position.needsUpdate = true;
+  pMat.opacity = t < 1.7 ? 0.95 * (1 - collapse) ** 2 * Math.min(1, t / 0.4) + 0.05 : 0.3 + 0.5 * (1 - burst);
+  pMat.size = t < 1.7 ? 0.085 : 0.045;
+
+  const k = back(prog(t, 1.7, 2.7));
+  logoGroup.visible = t > 1.65;
+  logoGroup.scale.setScalar(Math.max(0.001, k));
+  logo.rotation.y = (1 - ease(prog(t, 1.7, 2.9))) * Math.PI * 3;
+  ring.rotation.y = logo.rotation.y; ring.rotation.z = t * 0.6;
+  logoGroup.position.y = 0.35 + Math.sin(t * 2) * 0.05;
+  rays.rotation.z = t * 0.25; rays.material.opacity = ease(prog(t, 2.0, 3.0)) * 0.3;
+  halo.material.opacity = 0.18 + 0.06 * Math.sin(t * 3);
+  // light sweep across the logo at ~3.4 s
+  const sw = prog(t, 3.2, 4.0);
+  sweepMat.opacity = sw > 0 && sw < 1 ? 0.9 : 0;
+  barTex.offset.x = 0.5 - sw * 1.1; barTex.needsUpdate = true;
+  flash.material.opacity = 0.7 * Math.max(0, 1 - Math.abs(t - 1.72) / 0.15);
+  sub.material.opacity = ease(prog(t, 3.6, 4.3));
+  sub.position.y = -1.95 + ease(prog(t, 3.6, 4.3)) * 0.12;
+  camera.position.set(Math.sin(t * 0.3) * 0.3, 0.1, 9 - ease(prog(t, 0, 6.5)) * 1.6);
+  camera.lookAt(0, 0, 0);
+  bloom.strength = 0.55;
+  // golden energy ball grows while the galaxy collapses, then pops
+  const ball = t < 1.72 ? ease(prog(t, 0.9, 1.7)) : 0;
+  flash.scale.setScalar(0.3 + ball * 1.6 + Math.max(0, 1 - Math.abs(t - 1.72) / 0.15) * 3.5);
+  flash.material.opacity = Math.max(ball * 0.9, flash.material.opacity);
+  composer.render();
+  // fade in / out via the renderer's clear color is awkward with the composer, so dim the scene
+  const fade = Math.min(prog(t, 0, 0.3), 1 - prog(t, DURATION - 0.5, DURATION));
+  renderer.toneMappingExposure = Math.max(0.0001, fade);
+};
+window.ready = true;
+</script></body></html>

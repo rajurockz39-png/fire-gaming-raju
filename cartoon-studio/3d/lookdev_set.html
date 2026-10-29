@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+import * as THREE from 'three';
+import { makeRenderer, buildSet, bananaPeel } from './set3d.js';
+import { makeMonkey, makeBulldog, makeRooster } from './animals3d.js';
+const t0=performance.now();
+const r=makeRenderer();
+const { scene } = await buildSet(r);
+const D=makeBulldog(); D.root.position.set(-0.5,0,0.3); D.root.rotation.y=0.35; scene.add(D.root);
+const M=makeMonkey(); M.root.position.set(1.35,0,0.5); M.root.rotation.y=-0.45; scene.add(M.root);
+M.rig.smile.visible=false; M.rig.grin.visible=true;
+const K=makeRooster(); K.root.position.set(1.7,1.29,-3.1); K.root.rotation.y=-0.2; scene.add(K.root);
+bananaPeel(scene,[0.9,0,0.9]);
+const cam=new THREE.PerspectiveCamera(38,1080/1920,0.1,500);
+const shot=new URLSearchParams(location.search).get('shot')||'wide';
+if(shot==='wide'){cam.position.set(0.5,1.55,7.6); cam.lookAt(0.45,1.15,-1.5);}
+else if(shot==='house'){cam.position.set(-1.5,2.5,4.5); cam.lookAt(-3.6,2.2,-4.6);}
+else {cam.position.set(0.3,0.9,3.2); cam.lookAt(0.3,0.75,0);}
+r.render(scene,cam); window.done=true; console.log('render ms',performance.now()-t0);
+</script></body></html>
